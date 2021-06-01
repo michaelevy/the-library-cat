@@ -1,0 +1,29 @@
+.card-header {
+  text-align: center;
+}
+.App {
+  text-align: center;
+}
+.navbar {
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  font-size: 20px;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+.name {
+  color: rgb(206, 94, 187);
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 10px;
+  font-size: 3rem;
+}
+
+.navbar Button {
+  white-space: nowrap;
+  display: inline-block;
+}
