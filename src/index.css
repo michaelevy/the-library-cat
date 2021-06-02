@@ -1,17 +1,11 @@
 body {
   margin: 0;
+  margin-bottom: 500px;
   align-content: center;
-  font-weight: 100;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.header {
-  padding: 20px;
-}
-
-@font-face {
-  font-family: "Courier New";
-  src: local("MyFont"), url(./fonts/cour.ttf) format("truetype");
+  text-align: center;
+  color: #666;
+  font-weight: 500;
 }

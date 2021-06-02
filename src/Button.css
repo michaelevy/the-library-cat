@@ -25,3 +25,11 @@ a.button:active {
     margin: 0.4em auto;
   }
 }
+.circle {
+  width: 8em;
+  height: 8em;
+  text-align: center;
+  padding: 3.3em 0;
+  font-size: 24px;
+  border-radius: 8em;
+}
