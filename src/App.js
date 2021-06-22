@@ -1,62 +1,61 @@
 import "./App.css";
 import woo from "./woocircle.jpg";
+import twitter from "./twitter.png";
+import github from "./github.png";
+import gmail from "./gmail.png";
+import linkedin from "./linkedn.png";
 import Fade from "react-reveal/Fade";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
-import Ramblings from "./Ramblings.js";
 import { Button } from "./Button.js";
 import { CircleButton } from "./Button.js";
+import Ramblings from "./Ramblings.js";
+import Books from "./Books.js";
 
 function App() {
   return (
     <div className="App">
       <header>
-        <Fade top>
-          <Link to="/">
-            <img src={woo} alt="pretty swirly colours" style={{ width: 300 }} />
-          </Link>
-        </Fade>
+        <Image />
       </header>
       <Nav />
       <Main />
+      <Foot />
     </div>
   );
 }
 
-const Main = () => {
+function Image() {
+  const width = useLocation().pathname === "/" ? 300 : 150;
+  return (
+    <Link to="/">
+      <img src={woo} alt="pretty swirly colours" style={{ width: width }} />
+    </Link>
+  );
+}
+
+function Main() {
   return (
     <Switch>
       <Route exact path="/" component={Home}></Route>
       <Route exact path="/ramblings" component={Ramblings}></Route>
+      <Route exact path="/books" component={Books}></Route>
     </Switch>
   );
-};
+}
 
 function Nav() {
   return (
     <nav className="navbar">
-      <Fade left>
-        <Link to="/">
-          <p className="name">Michael Levy</p>
+      <Link to="/">
+        <p className="name">Michael Levy</p>
+      </Link>
+      <div className="links">
+        <Link to="/books">
+          <Button text="Book Reviews" />
         </Link>
-      </Fade>
-      <Fade right>
-        <div className="links">
-          <Button text="GitHub" link="https://github.com/michael-levy">
-            GitHub
-          </Button>
-          <Button text="Email" link="mailto:michaelfeehanlevy@gmail.com">
-            GitHub
-          </Button>
-          <Button text="Twitter" link="https://twitter.com/CatToTheFour">
-            GitHub
-          </Button>
-          <Button text="Linkedin" link="https://www.linkedin.com/in/michaelvy/">
-            GitHub
-          </Button>
-        </div>
-      </Fade>
+      </div>
     </nav>
   );
 }
@@ -64,11 +63,32 @@ function Nav() {
 function Home() {
   return (
     <Fade bottom>
-      <Link to="/ramblings">
-        <CircleButton text="TO RAMBLINGS" />
-      </Link>
+      <div className="links">
+        <CircleButton
+          text="GitHub"
+          link="https://github.com/michael-levy"
+          image={github}
+        />
+        <CircleButton
+          text="Email"
+          link="mailto:michaelfeehanlevy@gmail.com"
+          image={gmail}
+        />
+        <CircleButton
+          text="Twitter"
+          link="https://twitter.com/CatToTheFour"
+          image={twitter}
+        />
+        <CircleButton
+          text="LinkedIn"
+          link="https://www.linkedin.com/in/michaelvy/"
+          image={linkedin}
+        />
+      </div>
     </Fade>
   );
 }
-
+function Foot() {
+  return <div className="footer"></div>;
+}
 export default App;

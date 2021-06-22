@@ -1,8 +1,11 @@
 .button {
-  display: inline-block;
-  padding: 0.5em 3em;
+  background-color: white;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em 2em;
   border: 0.16em solid rgb(206, 94, 187);
-  margin: 0 0.3em 0.3em 0;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
@@ -11,19 +14,18 @@
   text-align: center;
   transition: all 0.15s;
 }
-a.button:hover {
-  color: #dddddd;
+
+.button:hover {
+  opacity: 0.8;
+  cursor: pointer;
   border-color: #dddddd;
 }
-a.button:active {
+.button:active {
   color: #bbbbbb;
   border-color: #bbbbbb;
 }
-@media all and (max-width: 30em) {
-   a.button {
-    display: block;
-    margin: 0.4em auto;
-  }
+.img:hover {
+  opacity: 1;
 }
 .circle {
   width: 8em;
@@ -32,4 +34,5 @@ a.button:active {
   padding: 3.3em 0;
   font-size: 24px;
   border-radius: 8em;
+  margin: 1em;
 }

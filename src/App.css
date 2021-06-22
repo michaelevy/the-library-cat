@@ -1,17 +1,3 @@
-.navbar Button {
-  font-size: 10px;
-}
-
-.navbar {
-  margin: 10px;
-  padding: 10px;
-  background-color: rgb(255, 255, 255, 1);
-  font-family: "Courier New", Courier, monospace;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
 .name {
   color: rgb(206, 94, 187);
   padding: 0px;
@@ -19,38 +5,23 @@
   margin-bottom: 10px;
   font-size: 3rem;
   transition: all 0.25s;
-  max-width: fit-content;
+  background-color: transparent;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
 .name:hover {
-  color: rgb(158, 77, 145);
+  color: rgb(101, 77, 158);
   opacity: 0.75;
-}
-.headImage {
-  width: 300px;
-  position: relative;
 }
 img {
   transition: all 0.25s;
 }
 img:hover {
-  opacity: 0.75;
+  opacity: 0.6;
 }
 
-.links {
-  display: flex;
-  flex-direction: row;
-  white-space: nowrap;
-  justify-content: center;
-}
-
-header {
-  margin-top: 20px;
-}
-
-.link-header {
+.header {
   display: block;
   font-size: 1.17em;
   margin-top: 1em;
@@ -68,3 +39,30 @@ header {
 .navbar a {
   text-decoration: none;
 }
+
+.navbar Button {
+  font-size: 10px;
+}
+
+.navbar {
+  background-color: white;
+  margin-bottom: 50px;
+  font-family: "Courier New", Courier, monospace;
+  top: 0;
+  z-index: 1;
+}
+
+.footer {
+  padding: 150px;
+  margin-top: 100px;
+  height: 50px;
+  color: #666;
+  z-index: -1;
+}
+
+.line-break {
+  width: 100%;
+}
+/**
+TODO: Dark Mode
+*/

@@ -10,12 +10,9 @@ function Ramblings() {
         marginRight: "auto",
       }}
     >
-      <p>Hello! Hi! What do people put on websites?! I don't know!</p>
-      <br />
-      <br />
       <Fade bottom>
         <a
-          className="link-header"
+          className="header"
           href="https://twitter.com/Foone/status/1369354716992389123"
         >
           4. Aliens are probably real confused rn
@@ -37,7 +34,7 @@ function Ramblings() {
         </p>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/c/c9/%22Container%22%27_OTH.jpg"
-          alt="MASSIVE Welwitshia with tattered leaves. Looks like a mound of vaguely plantish material. "
+          alt="A long string of tall, thin towers of metal struts. They stretch into the lonely distance of a snowy Russian winter."
           style={{ width: 300, margin: "20px" }}
         ></img>
       </Fade>
@@ -47,7 +44,7 @@ function Ramblings() {
       <br />
       <Fade bottom>
         <a
-          className="link-header"
+          className="header"
           href="https://open.spotify.com/track/3sWgoaftdzDcdwfHT6404A?si=c539063ff4854221"
         >
           3. Manta rays are seven meters in diameter
@@ -77,7 +74,7 @@ function Ramblings() {
       <br />
       <Fade bottom>
         <a
-          className="link-header"
+          className="header"
           href="https://eukaryotewritesblog.com/2021/05/02/theres-no-such-thing-as-a-tree/"
         >
           2. Trees are a lie
@@ -94,10 +91,7 @@ function Ramblings() {
       <br />
       <br />
       <Fade bottom>
-        <a
-          className="link-header"
-          href="https://en.wikipedia.org/wiki/Welwitschia"
-        >
+        <a className="header" href="https://en.wikipedia.org/wiki/Welwitschia">
           1. Look at this cool plant
         </a>
         <p>
