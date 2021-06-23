@@ -14,9 +14,11 @@
   color: rgb(101, 77, 158);
   opacity: 0.75;
 }
+
 img {
   transition: all 0.25s;
 }
+
 img:hover {
   opacity: 0.6;
 }
@@ -34,10 +36,6 @@ img:hover {
 
 .header {
   padding: 20px;
-}
-
-.navbar a {
-  text-decoration: none;
 }
 
 .navbar Button {

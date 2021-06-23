@@ -10,13 +10,26 @@ body {
   text-align: center;
   color: #666;
   font-weight: 500;
-  border-radius: 10px;
 }
 
+@media (min-width: 1200) {
+  .App {
+    width: 100%;
+  }
+}
+#root{
+  width:100%;
+  margin:0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #ececec;
+}
 .App {
   background-color: white;
   margin: 50px;
   padding: 50px;
+  width: 50%;
 }
 
 div {
@@ -26,7 +39,7 @@ div {
 .links {
   display: flex;
   flex-direction: row;
-  white-space: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
   background-color: transparent;
 }

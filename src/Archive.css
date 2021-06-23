@@ -1,0 +1,18 @@
+.bookLink{
+  padding: 0.2em;
+  text-decoration: underline;
+  color: rgb(206, 94, 187);
+}
+
+.bookLink:hover{
+  color: #666;
+}
+
+a{
+  color:rgb(206, 94, 187);
+  transition:all 0.1s;
+}
+
+a:hover{
+  color: #666;
+}

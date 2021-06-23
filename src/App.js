@@ -12,6 +12,7 @@ import { Button } from "./Button.js";
 import { CircleButton } from "./Button.js";
 import Ramblings from "./Ramblings.js";
 import Books from "./Books.js";
+import Archive from "./Archive.js"
 
 function App() {
   return (
@@ -27,10 +28,10 @@ function App() {
 }
 
 function Image() {
-  const width = useLocation().pathname === "/" ? 300 : 150;
+  const width = useLocation().pathname === "/" ? 30 : 15;
   return (
     <Link to="/">
-      <img src={woo} alt="pretty swirly colours" style={{ width: width }} />
+      <img src={woo} alt="pretty swirly colours" style={{ width: width +"%"}} />
     </Link>
   );
 }
@@ -40,7 +41,8 @@ function Main() {
     <Switch>
       <Route exact path="/" component={Home}></Route>
       <Route exact path="/ramblings" component={Ramblings}></Route>
-      <Route exact path="/books" component={Books}></Route>
+      <Route path="/books" component={Books}></Route>
+      <Route exact path="/index" component={Archive}></Route>
     </Switch>
   );
 }
@@ -49,11 +51,14 @@ function Nav() {
   return (
     <nav className="navbar">
       <Link to="/">
-        <p className="name">Michael Levy</p>
+        <p className="name">This is a website</p>
       </Link>
       <div className="links">
-        <Link to="/books">
-          <Button text="Book Reviews" />
+        <Link to="/books/0">
+          <Button text="Reviews" />
+        </Link>
+        <Link to="/index">
+          <Button text="Index" />
         </Link>
       </div>
     </nav>
@@ -63,7 +68,7 @@ function Nav() {
 function Home() {
   return (
     <Fade bottom>
-      <div className="links">
+      <div className="links" style={{fontSize:"110%"}}>
         <CircleButton
           text="GitHub"
           link="https://github.com/michael-levy"

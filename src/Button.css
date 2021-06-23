@@ -1,20 +1,22 @@
 .button {
   background-color: white;
-  margin: 10px;
+  margin: 0.5em;
+  width: 10em;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5em 2em;
   border: 0.16em solid rgb(206, 94, 187);
   box-sizing: border-box;
-  text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   color: gray;
   text-align: center;
   transition: all 0.15s;
 }
-
+a{
+  text-decoration: none;
+}
 .button:hover {
   opacity: 0.8;
   cursor: pointer;
@@ -32,7 +34,6 @@
   height: 8em;
   text-align: center;
   padding: 3.3em 0;
-  font-size: 24px;
   border-radius: 8em;
   margin: 1em;
 }
