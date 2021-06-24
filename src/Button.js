@@ -2,7 +2,7 @@ import "./Button.css";
 export function Button(props) {
   return (
     <div>
-      <a className="button" href={props.link}>
+      <a className="button" href={props.link} >
         {props.text}
       </a>
     </div>
@@ -12,7 +12,7 @@ export function Button(props) {
 export function ButtonAction(props) {
   return (
     <div>
-      <button className="button" onClick={props.onClick}>
+      <button className="button" onClick={props.onClick} style={props.width?{width:props.width}:{width:"10em"}}>
         {props.text}
       </button>
     </div>

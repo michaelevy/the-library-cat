@@ -9,13 +9,11 @@
   box-shadow: 0 0 1px 0px #666;
   flex-wrap: wrap;
 }
-
 .header {
   align-self: flex-start;
   font-size: 30px;
   margin: 0px;
 }
-
 .quote {
   margin-top: 40px;
   font-style: italic;
@@ -39,4 +37,33 @@
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
+}
+form{
+  color:#666;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+select{
+  color:#666 ;
+  font-family: inherit;
+  border-radius: 0px;
+  border-color: rgb(206, 94, 187);
+  border-style:solid;
+  height:2.5em;
+  margin: 0.5em;
+  text-align: center;
+}
+
+select:hover{
+  cursor: pointer;
+}
+
+
+option{
+  font-family: inherit;
+  color:#666;
+}
+
+option:hover{
+  cursor:pointer;
 }

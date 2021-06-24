@@ -15,6 +15,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "go": "vercel deploy && vercel --prod",
     "dev": "react-scripts start --port $PORT",
     "start": "react-scripts start",
     "build": "react-scripts build",

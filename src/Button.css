@@ -1,7 +1,6 @@
 .button {
   background-color: white;
   margin: 0.5em;
-  width: 10em;
   display: flex;
   align-items: center;
   justify-content: center;

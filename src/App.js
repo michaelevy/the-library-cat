@@ -28,7 +28,7 @@ function App() {
 }
 
 function Image() {
-  const width = useLocation().pathname === "/" ? 30 : 15;
+  const width = useLocation().pathname === "/" ? 20 : 10;
   return (
     <Link to="/">
       <img src={woo} alt="pretty swirly colours" style={{ width: width +"%"}} />
@@ -51,14 +51,14 @@ function Nav() {
   return (
     <nav className="navbar">
       <Link to="/">
-        <p className="name">This is a website</p>
+        <p className="name">Levytate</p>
       </Link>
       <div className="links">
         <Link to="/books/0">
-          <Button text="Reviews" />
+          <Button text="Book Reviews" />
         </Link>
         <Link to="/index">
-          <Button text="Index" />
+          <Button text="Review Index" />
         </Link>
       </div>
     </nav>
