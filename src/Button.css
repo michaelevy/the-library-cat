@@ -36,3 +36,20 @@ a{
   border-radius: 8em;
   margin: 1em;
 }
+
+.select{
+  margin:1px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em 2em;
+  border: 0.16em solid rgb(206, 94, 187);
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: gray;
+  text-align: center;
+  width: 8em;
+}
+

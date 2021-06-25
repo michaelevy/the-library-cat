@@ -4,7 +4,7 @@ import twitter from "./twitter.png";
 import github from "./github.png";
 import gmail from "./gmail.png";
 import linkedin from "./linkedn.png";
-import Fade from "react-reveal/Fade";
+import { useState, useEffect } from "react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
@@ -43,15 +43,19 @@ function Main() {
       <Route exact path="/ramblings" component={Ramblings}></Route>
       <Route path="/books" component={Books}></Route>
       <Route exact path="/index" component={Archive}></Route>
+      <Route>
+        <h1>404</h1>
+        <p>Are you lost?</p>
+      </Route>
     </Switch>
   );
 }
 
 function Nav() {
   return (
-    <nav className="navbar">
-      <Link to="/">
-        <p className="name">Levytate</p>
+    <nav className="navbar column">
+      <Link to="/" style={{width:"50%", display:"block"}}>
+        <p className="name" >Levytate</p>
       </Link>
       <div className="links">
         <Link to="/books/0">
@@ -66,9 +70,10 @@ function Nav() {
 }
 
 function Home() {
+
   return (
-    <Fade bottom>
-      <div className="links" style={{fontSize:"110%"}}>
+    <Fade component={
+      <div className="links">
         <CircleButton
           text="GitHub"
           link="https://github.com/michael-levy"
@@ -89,11 +94,37 @@ function Home() {
           link="https://www.linkedin.com/in/michaelvy/"
           image={linkedin}
         />
-      </div>
-    </Fade>
+      </div>}
+      />
   );
 }
+
 function Foot() {
-  return <div className="footer"></div>;
+  return (<div className="footer">
+    <p>This is the website of Michael Levy</p>
+    <p>Source code available <a href="https://github.com/michael-levy/website">here</a> (if you're me)</p>
+  </div>);
 }
+
+export function Fade({component}){ 
+  const [styles, setStyles] = useState(
+  {
+      fontSize: "50%",
+      opacity: 0,
+      transition: 'all 1s ease-out',
+  })
+
+
+  useEffect(()=>{
+      setTimeout(()=>(setStyles({
+          fontSize: "110%",
+          opacity: 1,
+          transition: 'all 1s ease-out',
+      })),0)
+      console.log("hi")
+  },[])
+
+  return(<div style={styles}>{component}</div>)
+}
+
 export default App;

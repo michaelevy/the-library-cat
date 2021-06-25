@@ -15,7 +15,9 @@ import { useLocation } from "react-router-dom";
  */
 export default function Books() {
   const history = useHistory();
-  const [index, setIndex] = useState(useLocation().pathname.split("/")[2]);
+
+  let location = useLocation().pathname.split("/")[2];
+  const [index, setIndex] = useState(location.length>0?location:0);
   const [book, setBook] = useState(books[index]);
 
   /**
@@ -93,7 +95,7 @@ function DisplayBook(props) {
  * @param func the function that will be called when an option is selected
  * @param initial initial selected value of the dropdown
  */
- function Dropdown({title, func}){
+function Dropdown({title, func}){
   const [state, setState] = useState(title)
 
   const handleChange = (event) => {
@@ -129,6 +131,7 @@ export const books = [
     quote:
       "Perhaps succor was enough to keep a whole population trapped, willingly.",
     rating: "5",
+    date: "22/06/21",
   },
   {
     title: "Wayfarers",
@@ -139,6 +142,7 @@ export const books = [
       "The Wayfarers series by Becky Chambers is a story that is heart-warming but not lacking in complexity. Every character is indescribably human (even when they're an alien), and the societies and communities described are unique, deep, and usually incredibly wholesome. The socialist community spirit found in the Exodan Fleet especially won my heart. The stories are on the whole mild, thoughtful, but their social commentaries and explorations of the human (and alien) experience are no less powerful for it. The focus is heavily on the characters, driven by their cultures and personalities. There is very little action, preferring to look at interpersonal and everyday problems. The term 'comfort sci-fi' has never been quite so applicable. ",
     quote: "I can wait for the galaxy outside to get a little kinder.",
     rating: "4.5",
+    date: "22/06/21",
   },
   {
     title: "The Kingkiller Chronicles",
@@ -149,6 +153,7 @@ export const books = [
       "The Kingkiller Chronicles are popularly known for both their fantastic prose, and how it's been ten thousand years and we still don't have the third book. Your opinion on Rothfuss's writing speed notwithstanding, he has an undeniable talent for poetic writing and the ability to craft a world that feels both unknowable and fully realised. It follows the main character from their childhood onwards, from their desperate struggle against poverty to increasingly fantastical shenanigans. Rothfuss is a perfectionist, which is very apparent when reading - everything feels very intentional, the descriptions and foreshadowing are perfectly placed. It's entirely based around the character of Kvothe, so if you don't like his arrogant, flamboyant approach to life, the series may be hard for you. The second book is not nearly as good, with a lack of direction and... that sex demon bit. Yeah. No.",
     quote: "Words can light fires in the minds of men. Words can wring tears from the hardest hearts.",
     rating: "4",
+    date: "24/06/21",
   },
 ];
 
