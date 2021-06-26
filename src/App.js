@@ -4,16 +4,20 @@ import twitter from "./twitter.png";
 import github from "./github.png";
 import gmail from "./gmail.png";
 import linkedin from "./linkedn.png";
-import { useState, useEffect } from "react";
+import { Animate } from "./Animations.js";
 import React from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
 import { Button } from "./Button.js";
 import { CircleButton } from "./Button.js";
 import Ramblings from "./Ramblings.js";
 import Books from "./Books.js";
-import Archive from "./Archive.js"
+import Archive from "./Archive.js";
 
+/**
+ * Main component
+ */
 function App() {
   return (
     <div className="App">
@@ -27,15 +31,25 @@ function App() {
   );
 }
 
+/**
+ * Website logo at the top of page.
+ */
 function Image() {
   const width = useLocation().pathname === "/" ? 20 : 10;
   return (
-    <Link to="/">
-      <img src={woo} alt="pretty swirly colours" style={{ width: width +"%"}} />
-    </Link>
+    <a href="/">
+      <img
+        src={woo}
+        alt="pretty swirly colours"
+        style={{ width: width + "%" }}
+      />
+    </a>
   );
 }
 
+/**
+ * Display the page that the user is currently on
+ */
 function Main() {
   return (
     <Switch>
@@ -51,80 +65,86 @@ function Main() {
   );
 }
 
+/**
+ * Navbar with website name and links to the things I want links to
+ */
 function Nav() {
   return (
     <nav className="navbar column">
-      <Link to="/" style={{width:"50%", display:"block"}}>
-        <p className="name" >Levytate</p>
+      <Link to="/" style={{ width: "50%", display: "block" }}>
+        <p className="name">Levytate</p>
       </Link>
       <div className="links">
-        <Link to="/books/0">
-          <Button text="Book Reviews" />
-        </Link>
-        <Link to="/index">
-          <Button text="Review Index" />
-        </Link>
+        <Button text="Book Reviews" link="/books/0" />
+        <Button text="Review Index" link="/index" />
       </div>
     </nav>
   );
 }
 
+/**
+ * Displays home page with ways to contact me
+ */
 function Home() {
+  const [loaded, setLoaded] = useState(false);
 
   return (
-    <Fade component={
-      <div className="links">
-        <CircleButton
-          text="GitHub"
-          link="https://github.com/michael-levy"
-          image={github}
-        />
-        <CircleButton
-          text="Email"
-          link="mailto:michaelfeehanlevy@gmail.com"
-          image={gmail}
-        />
-        <CircleButton
-          text="Twitter"
-          link="https://twitter.com/CatToTheFour"
-          image={twitter}
-        />
-        <CircleButton
-          text="LinkedIn"
-          link="https://www.linkedin.com/in/michaelvy/"
-          image={linkedin}
-        />
-      </div>}
+    <div style={loaded ? {} : { display: "none" }}>
+      <Animate
+        component={
+          <div className="links contact" onLoad={() => setLoaded(true)}>
+            <CircleButton
+              text="GitHub"
+              link="https://github.com/michael-levy"
+              image={github}
+            />
+            <CircleButton
+              text="Email"
+              link="mailto:michaelfeehanlevy@gmail.com"
+              image={gmail}
+            />
+            <CircleButton
+              text="Twitter"
+              link="https://twitter.com/CatToTheFour"
+              image={twitter}
+            />
+            <CircleButton
+              text="LinkedIn"
+              link="https://www.linkedin.com/in/michaelvy/"
+              image={linkedin}
+            />
+          </div>
+        }
+        initial={{
+          fontSize: "30%",
+          transition: "all 1s ease-out",
+          opacity: 0,
+        }}
+        final={{
+          fontSize: "110%",
+          transition: "all 1s ease-out",
+          opacity: 1,
+        }}
       />
+    </div>
   );
 }
 
+/**
+ * Footer with link to source code
+ */
 function Foot() {
-  return (<div className="footer">
-    <p>This is the website of Michael Levy</p>
-    <p>Source code available <a href="https://github.com/michael-levy/website">here</a> (if you're me)</p>
-  </div>);
-}
-
-export function Fade({component}){ 
-  const [styles, setStyles] = useState(
-  {
-      fontSize: "50%",
-      opacity: 0,
-      transition: 'all 1s ease-out',
-  })
-
-
-  useEffect(()=>{
-      setTimeout(()=>(setStyles({
-          fontSize: "110%",
-          opacity: 1,
-          transition: 'all 1s ease-out',
-      })),0)
-      console.log("hi")
-  },[])
-
-  return(<div style={styles}>{component}</div>)
+  return (
+    <div className="footer">
+      <p>This is the website of Michael Levy</p>
+      <p>Built using React</p>
+      <p>
+        Source code available{" "}
+        <a href="https://github.com/michael-levy/website">here</a> (if you're
+        me)
+      </p>
+    </div>
+  );
 }
 
 export default App;

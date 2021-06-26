@@ -1,23 +1,26 @@
-import Fade from "react-reveal/Fade";
 import "./Books.css";
-import React from "react"
+import React from "react";
+import { Animate } from "./Animations.js";
 import { useCallback } from "react";
-import wayfarers from "./wayfarers.jpg"
-import kingkiller from "./kingkiller.jpg"
+import wayfarers from "./wayfarers.jpg";
+import kingkiller from "./kingkiller.jpg";
+import stormlight from "./stormlight.jpg";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { ButtonAction } from "./Button.js";
 import { useLocation } from "react-router-dom";
 
-
 /**
  * Page to display and navigate my book reviews
  */
 export default function Books() {
+  // redirect to first book if url is invalid
   const history = useHistory();
+  let location = parseInt(useLocation().pathname.split("/")[2]);
+  const [index, setIndex] = useState(
+    location > 0 && location < books.length ? location : 0
+  );
 
-  let location = useLocation().pathname.split("/")[2];
-  const [index, setIndex] = useState(location.length>0?location:0);
   const [book, setBook] = useState(books[index]);
 
   /**
@@ -25,14 +28,14 @@ export default function Books() {
    * @param title title of the book
    */
   const getBook = useCallback((title) => {
-    setIndex(books.findIndex((book)=>(book.title===title)));
-  },[]);
+    setIndex(books.findIndex((book) => book.title === title));
+  }, []);
 
   /**
    * Sets the current book to the next in the list
    */
   const nextBook = () => {
-    let temp = (index === books.length - 1 ? index : parseInt(index) + 1);
+    let temp = index === books.length - 1 ? index : parseInt(index) + 1;
     setIndex(temp);
   };
 
@@ -40,27 +43,39 @@ export default function Books() {
    * Sets the current book to the previous in the list
    */
   const prevBook = () => {
-    let temp = (index <= 0 ? index : index  - 1);
+    let temp = index <= 0 ? index : index - 1;
     setIndex(temp);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setBook(books[index]);
-    history.replace({pathname: index})
-  },[index, history]) 
+    history.replace({ pathname: index });
+  }, [index, history]);
 
   return (
     <div className="column">
       <div className="row">
-        <ButtonAction width="8.3em" text="|< First |<" onClick={()=>{setBook(books[0]);setIndex(0)}} />
+        <ButtonAction
+          width="8.3em"
+          text="|< First |<"
+          onClick={() => {
+            setBook(books[0]);
+            setIndex(0);
+          }}
+        />
         <ButtonAction text="< Previous <" onClick={prevBook} />
-        <Dropdown func={getBook} title={book.title}/>
+        <Dropdown key={book.title} func={getBook} title={book.title} />
         <ButtonAction text="> Next >" onClick={nextBook} />
-        <ButtonAction width="8.3em" text=">| Last >|" onClick={()=>{setBook(books[books.length-1]);setIndex(books.length-1)}} />
+        <ButtonAction
+          width="8.3em"
+          text=">| Last >|"
+          onClick={() => {
+            setBook(books[books.length - 1]);
+            setIndex(books.length - 1);
+          }}
+        />
       </div>
-      <Fade bottom>
       <DisplayBook book={book ? book : books[0]} />
-      </Fade>
     </div>
   );
 }
@@ -71,21 +86,49 @@ export default function Books() {
  * @see books
  */
 function DisplayBook(props) {
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <div className="book">
-      <a style={{paddingRight:"2%"}} href={props.book.href}>
-        <img
-          src={props.book.src}
-          alt={props.book.alt}
-          style={{ maxHeight: "100%",maxWidth:"300px", alignSelf:"left" }}
-        />
-      </a>
-      <div style={{backgroundColor: "inherit",  flexBasis:"50%", flexGrow:1}}>
-        <p className="header">{props.book.title}</p>
-        <p style={{ fontWeight: 8}}>{props.book.review}</p>
-        <p className="quote">{'"' + props.book.quote + '"'}</p>
-        <p className="rating">{props.book.rating}/5</p>
-      </div>
+    <div style={loaded ? {} : { display: "none" }}>
+      <Animate
+        name={props.book.title}
+        component={
+          <div className="book">
+            <a style={{ paddingRight: "2%" }} href={props.book.href}>
+              <img
+                onLoad={() => setLoaded(true)}
+                src={props.book.src}
+                alt={props.book.alt}
+                style={{
+                  maxHeight: "100%",
+                  maxWidth: "300px",
+                  alignSelf: "left",
+                }}
+              />
+            </a>
+            <div
+              style={{
+                backgroundColor: "inherit",
+                flexBasis: "50%",
+                flexGrow: 1,
+              }}
+            >
+              <p className="header">{props.book.title}</p>
+              <p style={{ fontWeight: 8 }}>{props.book.review}</p>
+              <p className="quote">{'"' + props.book.quote + '"'}</p>
+              <p className="rating">{props.book.rating}/5</p>
+            </div>
+          </div>
+        }
+        initial={{
+          opacity: 0,
+          transition: "all 1s ease-out",
+        }}
+        final={{
+          opacity: 1,
+          transition: "all 1s ease-out",
+        }}
+      />
     </div>
   );
 }
@@ -95,26 +138,30 @@ function DisplayBook(props) {
  * @param func the function that will be called when an option is selected
  * @param initial initial selected value of the dropdown
  */
-function Dropdown({title, func}){
-  const [state, setState] = useState(title)
+function Dropdown({ title, func }) {
+  const [state, setState] = useState(title);
 
   const handleChange = (event) => {
-    setState(event.target.value)
-  }
+    setState(event.target.value);
+  };
 
-  useEffect(()=>{
-    func(state)
-  },[state,func])
+  useEffect(() => {
+    func(state);
+  }, [state, func]);
 
   return (
     <form>
-        <select value={state.value} onChange={handleChange}>            
-        {books.map((book)=>(
-          <option value={book.title} label={book.title}></option>
+      <select value={title} onChange={handleChange}>
+        {books.map((book) => (
+          <option
+            value={book.title}
+            label={book.title}
+            key={book.title}
+          ></option>
         ))}
-        </select>
+      </select>
     </form>
-  )
+  );
 }
 
 /**
@@ -144,16 +191,31 @@ export const books = [
     rating: "4.5",
     date: "22/06/21",
   },
+
   {
     title: "The Kingkiller Chronicles",
     href: "https://www.goodreads.com/series/45262-the-kingkiller-chronicle",
     src: kingkiller,
     alt: "I merged the two book covers together and it looks horrible. I don't want to describe it.",
-    review:
-      "The Kingkiller Chronicles are popularly known for both their fantastic prose, and how it's been ten thousand years and we still don't have the third book. Your opinion on Rothfuss's writing speed notwithstanding, he has an undeniable talent for poetic writing and the ability to craft a world that feels both unknowable and fully realised. It follows the main character from their childhood onwards, from their desperate struggle against poverty to increasingly fantastical shenanigans. Rothfuss is a perfectionist, which is very apparent when reading - everything feels very intentional, the descriptions and foreshadowing are perfectly placed. It's entirely based around the character of Kvothe, so if you don't like his arrogant, flamboyant approach to life, the series may be hard for you. The second book is not nearly as good, with a lack of direction and... that sex demon bit. Yeah. No.",
-    quote: "Words can light fires in the minds of men. Words can wring tears from the hardest hearts.",
+    review: [
+      "The Kingkiller Chronicles are popularly known for both their fantastic prose, and how it's been ten thousand years and we still don't have the third book. Your opinion on Rothfuss's writing speed notwithstanding, he has an undeniable talent for poetic writing and the ability to craft a world that feels both unknowable and fully realised. It follows the main character from their childhood onwards, from their desperate struggle against poverty to increasingly fantastical shenanigans. Rothfuss is a perfectionist, which is very apparent when reading - everything feels very intentional, the descriptions and foreshadowing are perfectly placed. It's entirely based around the character of Kvothe, so if you don't like his arrogant, flamboyant approach to life, the series may be hard for you. The second book is not nearly as good, with a lack of direction and...",
+      <i> that </i>,
+      "scene. Yeah. No.",
+    ],
+
+    quote:
+      "Words can light fires in the minds of men. Words can wring tears from the hardest hearts.",
     rating: "4",
     date: "24/06/21",
   },
+  {
+    title: "The Stormlight Archive",
+    href: "https://www.goodreads.com/series/49075-the-stormlight-archive",
+    src: stormlight,
+    quote: "Honour is dead. But I'll see what I can do.",
+    review:
+      "The Stormlight Archive is my favourite series. It's a story that is unrepentingly epic. Sanderson's worldbuilding is unparalleled, with an ability to craft worlds like no one else. The magic system in typical Sanderson fashion is as developed as a science. The plot is everything you could hope for from an epic fantasy series, with an ambitious scope and intricate threads underpinning every development. Although the cast is as large as it is diverse, each book focuses on an individual, making them intense character studies so that it's impossible to avoid falling in love with each main character. His prose is far more accessible than you would typically find in this genre, with solid pacing and a rare lack of over description. These are only some of the things making this series one of the most popular modern fantasy series. Brandon Sanderson is this generation's Tolkein, Jordan or Martin, and this is his magnum opus.",
+    rating: "5",
+    data: "26/06/21",
+  },
 ];
-
