@@ -90,6 +90,11 @@ function Home() {
 
   return (
     <div style={loaded ? {} : { display: "none" }}>
+      <p className="header">Hello! Hi!</p>
+      <p>
+        I'm Michael Levy, and this is my website. I'm studying Software
+        Engineering at Victoria University of Wellington.
+      </p>
       <Animate
         component={
           <div className="links contact" onLoad={() => setLoaded(true)}>
