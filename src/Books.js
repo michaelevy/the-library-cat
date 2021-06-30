@@ -6,7 +6,7 @@ import wayfarers from "./wayfarers.jpg";
 import kingkiller from "./kingkiller.jpg";
 import stormlight from "./stormlight.jpg";
 import baru from "./monsterbaru.jpg";
-import firstlaw from "./firstlaw.jpg";
+/* import firstlaw from "./firstlaw.jpg"; */
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { ButtonAction } from "./Button.js";
