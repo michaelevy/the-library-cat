@@ -1,7 +1,8 @@
 import { books } from "./Books.js";
 import "./Archive.css";
+import goodreads from "./goodreads.png";
 import { useState } from "react";
-import { SelectButton } from "./Button.js";
+import { SelectButton, CircleButton } from "./Button.js";
 
 /**
  * Page that displays all reviews in a list
@@ -81,6 +82,13 @@ export default function Archive() {
           </a>
         </div>
       ))}
+      <div style={{ fontSize: 5, paddingTop: 50 }}>
+        <CircleButton
+          text="Goodreads"
+          link="https://www.goodreads.com/user/show/70102892-michael"
+          image={goodreads}
+        />
+      </div>
     </div>
   );
 }

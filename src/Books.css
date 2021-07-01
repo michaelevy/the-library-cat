@@ -26,45 +26,31 @@
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
-.column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+form {
+  color: #666;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.row{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-form{
-  color:#666;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-select{
-  color:#666 ;
+select {
+  color: #666;
   font-family: inherit;
   border-radius: 0px;
   border-color: rgb(206, 94, 187);
-  border-style:solid;
-  height:2.5em;
+  border-style: solid;
+  height: 2.5em;
   margin: 0.5em;
   text-align: center;
 }
 
-select:hover{
+select:hover {
   cursor: pointer;
 }
 
-
-option{
+option {
   font-family: inherit;
-  color:#666;
+  color: #666;
 }
 
-option:hover{
-  cursor:pointer;
+option:hover {
+  cursor: pointer;
 }

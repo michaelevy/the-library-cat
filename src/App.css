@@ -54,18 +54,14 @@ img:hover {
   font-size: small;
   padding: 150px;
   padding-bottom: 5px;
+  margin: auto;
+  display: block;
   margin-top: 100px;
   height: min-content;
   color: #666;
+  min-width: min-content;
 }
 
-.line-break {
-  width: 100%;
-}
-
-.contact {
-  height: 100px;
-}
 /**
 TODO: Dark Mode
 */

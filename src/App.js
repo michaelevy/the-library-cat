@@ -7,7 +7,7 @@ import linkedin from "./linkedn.png";
 import { Animate } from "./Animations.js";
 import React from "react";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
 import { Button } from "./Button.js";
 import { CircleButton } from "./Button.js";
@@ -71,9 +71,9 @@ function Main() {
 function Nav() {
   return (
     <nav className="navbar column">
-      <Link to="/" style={{ width: "50%", display: "block" }}>
+      <a href="/">
         <p className="name">Levytate</p>
-      </Link>
+      </a>
       <div className="links">
         <Button text="Book Reviews" link="/books/0" />
         <Button text="Review Index" link="/index" />
@@ -91,13 +91,28 @@ function Home() {
   return (
     <div style={loaded ? {} : { display: "none" }}>
       <p className="header">Hello! Hi!</p>
-      <p>
+      <p
+        style={{
+          width: "60%",
+          margin: "auto",
+          lineHeight: 2,
+          paddingBottom: 50,
+        }}
+      >
         I'm Michael Levy, and this is my website. I'm studying Software
-        Engineering at Victoria University of Wellington.
+        Engineering at Victoria University of Wellington. I write short,
+        bite-sized book reviews, because I personally find that longer reviews
+        tend to cover parts of setting and character that I would prefer to
+        discover myself. You can find those <a href="/books">here</a>. Below are
+        various ways to contact me or see more that I've done.
       </p>
       <Animate
         component={
-          <div className="links contact" onLoad={() => setLoaded(true)}>
+          <div
+            className="links"
+            onLoad={() => setLoaded(true)}
+            style={{ height: "min-content" }}
+          >
             <CircleButton
               text="GitHub"
               link="https://github.com/michael-levy"

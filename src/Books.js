@@ -6,7 +6,9 @@ import wayfarers from "./wayfarers.jpg";
 import kingkiller from "./kingkiller.jpg";
 import stormlight from "./stormlight.jpg";
 import baru from "./monsterbaru.jpg";
-/* import firstlaw from "./firstlaw.jpg"; */
+import firstlaw from "./firstlaw.jpg";
+import fifthseason from "./fifthseason.jpg";
+import murderbot from "./murderbot.jpg";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { ButtonAction } from "./Button.js";
@@ -190,7 +192,7 @@ export const books = [
     review:
       "The Wayfarers series by Becky Chambers is a story that is heart-warming but not lacking in complexity. Every character is indescribably human (even when they're an alien), and the societies and communities described are unique, deep, and usually incredibly wholesome. The socialist community spirit found in the Exodan Fleet especially won my heart. The stories are on the whole mild, thoughtful, but their social commentaries and explorations of the human (and alien) experience are no less powerful for it. The focus is heavily on the characters, driven by their cultures and personalities. There is very little action, preferring to look at interpersonal and everyday problems. The term 'comfort sci-fi' has never been quite so applicable. ",
     quote: "I can wait for the galaxy outside to get a little kinder.",
-    rating: "4.5",
+    rating: "5",
     date: "22/06/21",
   },
 
@@ -229,12 +231,41 @@ export const books = [
     quote: "This is the truth. You will know because it hurts.",
     review:
       "The Masquerade by Seth Dickinson follows Baru Cormorant, who I would really prefer not to follow but also can't look away. It's a stunning criticism of... pretty much everything. Colonialism, homophobia, transphobia, capitalism, racism - you name it, it's covered. The society providing the backdrop for this plethora of thematic messaging is Imperial Falcrest, one of the most intriguing fantasy cultures I've read - subtle, inexorable, cunning. It uses indoctrination, assimilation and economics to achieve its objectives. The series revolves around Baru's quest to destroy it from the inside while trying not to become a monster herself. Following Baru's increasingly unstable mental state, we are taken on a journey through economic machinations, geopolitics and revolution. The book didn't receive nearly as much acclaim as I think it deserves, with a lot of criticism around pacing and writing style (which is apparently 'Wikipedia style'), so bear that in mind. The climax of the first book left me heartbroken, and subsequent books left me both hating the books and loving them, feeling distinctly uncomfortable but still enthralled.",
-    rating: "4.5",
+    rating: "4",
     date: "27/06/21",
   },
-  /*   {
+  {
     title: "The First Law",
+    href: "https://www.goodreads.com/series/43644-the-first-law",
     src: firstlaw,
-    rating: "4.5",
-  }, */
+    alt: "The covers of four First Law books, which feature the title of each book with representations of characters from the book. The titles and art are stylised as if they had been done in ink, pure black and white with spots of ink scattered about.",
+    quote: "We should forgive our enemies, but not before they are hanged.",
+    review:
+      "Grimdark is becoming a more popular subgenre of fantasy, possibly because of all the G.R.R Martin fans starved for content. Joe Abercrombie is currently the strongest alternative, and in my opinion, does a far better job. If you're unfamiliar with the term 'grimdark', it's about what you'd expect - gritty, morally grey, characters keep dying on you. Abercrombie's masterful ability to develop interesting and consistent characters is his greatest skill and makes even the most distasteful characters engaging narrators. That's a good thing too, since even the 'good' characters are fundamentally flawed and I wouldn't like to meet any of them. All of the choices made are believable, giving the plot a character-driven feel despite how its mysteries and reveals are clearly well thought out. The books are also packed with grim humour, which I had great fun with. Abercrombie is so well placed to be a spiritual successor to GRRM that honestly just let him finish ASOIAF...",
+    rating: "4",
+    date: "01/07/21",
+  },
+  {
+    title: "The Broken Earth",
+    href: "https://www.goodreads.com/series/112296-the-broken-earth",
+    src: fifthseason,
+    alt: "The cover of The Fifth Season, the first book in the series, which really isn't very interesting and appears to be some masonry. SALON.com states 'one of the most celebrated new voices in fantasy' and the subtitle is 'every age must come to an end.'",
+    quote:
+      "For all those that have to fight for the respect that everyone else is given without question.",
+    review:
+      "This series by N.K Jemisin is a wonderfully original approach to a large-scope fantasy series. Jemisin is a very strong literary author, and this book like her other works is very well-rounded, with very few inconsistencies or weaknesses. The worldbuilding is fascinating, with a focus on geology and the manipulation or repercussions of it. The books focus on an impending apocalypse bought about by, well, the earth being broken. As I expect from a Jemisin novel, heavy topics and social commentary are tackled head-on. The characters are very sympathetic, with effective emotional prose driving home all the pain they're put through. There are passages of second person, which has had a mixed reception - I found it weird at first but got used to it quickly. The twists completely recontextualise the whole series a few times, which was very impressive. The final book was not quite the climax I had hoped for, but it was still a traumatically emotional finale.",
+    rating: "4",
+    date: "01/07/21",
+  },
+  {
+    title: "Murderbot",
+    href: "https://www.goodreads.com/series/191900-the-murderbot-diaries",
+    src: murderbot,
+    alt: "The cover of the four Murderbot novellas, each of which features Murderbot, who looks sort of like someone in a cool spacesuit, along with traditional sci-fi imagery like space stations and starships.",
+    quote: "I was having an emotion, and I hate that",
+    review:
+      "Murderbot is the softest and most fluffy death robot you'll ever meet. Mentally, that is. Physically, they have guns in their arms. The series is not just character-driven, but is almost a character study of Murderbot's psychology, history, and relationships. Through the first four novellas and subsequent novels, I cannot imagine a reader not falling in love with them.  It's pleasantly funny without being light-hearted, carefully handling Murderbot's mental health issues and especially social anxiety. That is correct, we are talking about a death robot with social anxiety. The setting is a dystopia of space capitalism, and the plot involves a lot of working out what the evil corporations are up to and stopping them (mainly to save friends rather than anti-capitalist sentiment, although that is also there). The action scenes are some of my favourites, with Murderbot's unique voice and Wells's practical prose making them feel very much like action is happening. ",
+    rating: "4",
+    date: "01/07/21",
+  },
 ];
