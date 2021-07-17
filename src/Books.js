@@ -2,13 +2,13 @@ import "./Books.css";
 import React from "react";
 import { Animate } from "./Animations.js";
 import { useCallback } from "react";
-import wayfarers from "./wayfarers.jpg";
-import kingkiller from "./kingkiller.jpg";
-import stormlight from "./stormlight.jpg";
-import baru from "./monsterbaru.jpg";
-import firstlaw from "./firstlaw.jpg";
-import fifthseason from "./fifthseason.jpg";
-import murderbot from "./murderbot.jpg";
+import wayfarers from "./images/wayfarers.jpg";
+import kingkiller from "./images/kingkiller.jpg";
+import stormlight from "./images/stormlight.jpg";
+import baru from "./images/monsterbaru.jpg";
+import firstlaw from "./images/firstlaw.jpg";
+import fifthseason from "./images/fifthseason.jpg";
+import murderbot from "./images/murderbot.jpg";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { ButtonAction } from "./Button.js";
@@ -239,7 +239,8 @@ export const books = [
     href: "https://www.goodreads.com/series/43644-the-first-law",
     src: firstlaw,
     alt: "The covers of four First Law books, which feature the title of each book with representations of characters from the book. The titles and art are stylised as if they had been done in ink, pure black and white with spots of ink scattered about.",
-    quote: "We should forgive our enemies, but not before they are hanged.",
+    quote:
+      "People love to see death. It reminds them that however mean, however low, however horrible their lives become…at least they have one.",
     review:
       "Grimdark is becoming a more popular subgenre of fantasy, possibly because of all the G.R.R Martin fans starved for content. Joe Abercrombie is currently the strongest alternative, and in my opinion, does a far better job. If you're unfamiliar with the term 'grimdark', it's about what you'd expect - gritty, morally grey, characters keep dying on you. Abercrombie's masterful ability to develop interesting and consistent characters is his greatest skill and makes even the most distasteful characters engaging narrators. That's a good thing too, since even the 'good' characters are fundamentally flawed and I wouldn't like to meet any of them. All of the choices made are believable, giving the plot a character-driven feel despite how its mysteries and reveals are clearly well thought out. The books are also packed with grim humour, which I had great fun with. Abercrombie is so well placed to be a spiritual successor to GRRM that honestly just let him finish ASOIAF...",
     rating: "4",

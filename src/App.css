@@ -1,5 +1,5 @@
 .name {
-  color: rgb(206, 94, 187);
+  color: rgb(247, 122, 226);
   padding: 0px;
   margin: 0px;
   margin-bottom: 10px;
@@ -51,7 +51,7 @@ img:hover {
 }
 
 .footer {
-  font-size: small;
+  font-size: 12px;
   padding: 150px;
   padding-bottom: 5px;
   margin: auto;

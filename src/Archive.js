@@ -1,6 +1,6 @@
 import { books } from "./Books.js";
 import "./Archive.css";
-import goodreads from "./goodreads.png";
+import goodreads from "./images/goodreads.png";
 import { useState } from "react";
 import { SelectButton, CircleButton } from "./Button.js";
 

@@ -1,9 +1,9 @@
 import "./App.css";
-import woo from "./woocircle.jpg";
-import twitter from "./twitter.png";
-import github from "./github.png";
-import gmail from "./gmail.png";
-import linkedin from "./linkedn.png";
+import woo from "./images/woocircle.jpg";
+import twitter from "./images/twitter.png";
+import github from "./images/github.png";
+import gmail from "./images/gmail.png";
+import linkedin from "./images/linkedn.png";
 import { Animate } from "./Animations.js";
 import React from "react";
 import { useState } from "react";
@@ -162,6 +162,12 @@ function Foot() {
         Source code available{" "}
         <a href="https://github.com/michael-levy/website">here</a> (if you're
         me)
+      </p>
+      <p>
+        The content of this website is licensed under a{" "}
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+          Creative Commons Attribution 4.0 International License
+        </a>
       </p>
     </div>
   );
