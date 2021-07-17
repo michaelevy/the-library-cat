@@ -12,8 +12,9 @@
   color: gray;
   text-align: center;
   transition: all 0.15s;
+  border-radius: 5px;
 }
-a{
+a {
   text-decoration: none;
 }
 .button:hover {
@@ -37,8 +38,8 @@ a{
   margin: 1em;
 }
 
-.select{
-  margin:1px;
+.select {
+  margin: 1px;
   background-color: white;
   display: flex;
   align-items: center;
@@ -52,4 +53,3 @@ a{
   text-align: center;
   width: 8em;
 }
-
