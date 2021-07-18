@@ -323,7 +323,7 @@ export const books = [
     review: [
       "This tome of a book by Susanna Clarke is what I would describe as 'literary fantasy', set in (and in a style reminiscent of) 19th century England. Its greatest strength is its setting, an England which was long ago filled with magic. Magic is now relegated to 'theoretical magicians', who study it but cannot use it. This doesn't last long in the book, of course, and a delightfully fantastical depiction of historical England emerges. The prose is often flowery and the plot slow - early on we spend a painful amount of time doing nothing much. The narrator is presented to be a droll scholar of magic in the time and assumes we, too, are 19th century Englishmen. This is both a positive and negative, and the detailed footnotes and references to an imaginary body of literature enhance the atmosphere and immersion, but can sometimes get in the way. It's not to be understated, however, what a beautifully classical and nostalgically whimsical novel it is. The devious faeries, fickle magic and sly prose make this a book I adored.",
     ],
-    rating: "3",
+    rating: "4",
     date: "18/07/21",
   },
 ];
