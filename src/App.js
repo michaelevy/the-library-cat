@@ -72,7 +72,7 @@ function Nav() {
   return (
     <nav className="navbar column">
       <a href="/">
-        <p className="name">Levytate</p>
+        <p className="name">Michael Levy</p>
       </a>
       <div className="links">
         <Button text="Book Reviews" link="/books/0" />
@@ -100,11 +100,11 @@ function Home() {
         }}
       >
         I'm Michael Levy, and this is my website. I'm studying Software
-        Engineering at Victoria University of Wellington. I write short,
-        bite-sized book reviews, because I personally find that longer reviews
-        tend to cover parts of setting and character that I would prefer to
-        discover myself. You can find those <a href="/books">here</a>. Below are
-        various ways to contact me or see more that I've done.
+        Engineering at Victoria University of Wellington. I write short book
+        reviews, because I personally find that longer reviews tend to cover
+        parts of setting and character that I would prefer to discover myself.
+        You can find those <a href="/books">here</a>. Below are various ways to
+        contact me or see more that I've done.
       </p>
       <Animate
         component={
@@ -160,8 +160,7 @@ function Foot() {
       <p>Built using React</p>
       <p>
         Source code available{" "}
-        <a href="https://github.com/michael-levy/website">here</a> (if you're
-        me)
+        <a href="https://github.com/michael-levy/website">here</a>
       </p>
       <p>
         The content of this website is licensed under a{" "}

@@ -9,6 +9,9 @@ import baru from "./images/monsterbaru.jpg";
 import firstlaw from "./images/firstlaw.jpg";
 import fifthseason from "./images/fifthseason.jpg";
 import murderbot from "./images/murderbot.jpg";
+import empress from "./images/empress.jpg";
+import discworld from "./images/discworld.webp";
+import wayward from "./images/wayward.jpg";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { ButtonAction } from "./Button.js";
@@ -243,7 +246,7 @@ export const books = [
       "People love to see death. It reminds them that however mean, however low, however horrible their lives become…at least they have one.",
     review:
       "Grimdark is becoming a more popular subgenre of fantasy, possibly because of all the G.R.R Martin fans starved for content. Joe Abercrombie is currently the strongest alternative, and in my opinion, does a far better job. If you're unfamiliar with the term 'grimdark', it's about what you'd expect - gritty, morally grey, characters keep dying on you. Abercrombie's masterful ability to develop interesting and consistent characters is his greatest skill and makes even the most distasteful characters engaging narrators. That's a good thing too, since even the 'good' characters are fundamentally flawed and I wouldn't like to meet any of them. All of the choices made are believable, giving the plot a character-driven feel despite how its mysteries and reveals are clearly well thought out. The books are also packed with grim humour, which I had great fun with. Abercrombie is so well placed to be a spiritual successor to GRRM that honestly just let him finish ASOIAF...",
-    rating: "4",
+    rating: "5",
     date: "01/07/21",
   },
   {
@@ -255,7 +258,7 @@ export const books = [
       "For all those that have to fight for the respect that everyone else is given without question.",
     review:
       "This series by N.K Jemisin is a wonderfully original approach to a large-scope fantasy series. Jemisin is a very strong literary author, and this book like her other works is very well-rounded, with very few inconsistencies or weaknesses. The worldbuilding is fascinating, with a focus on geology and the manipulation or repercussions of it. The books focus on an impending apocalypse bought about by, well, the earth being broken. As I expect from a Jemisin novel, heavy topics and social commentary are tackled head-on. The characters are very sympathetic, with effective emotional prose driving home all the pain they're put through. There are passages of second person, which has had a mixed reception - I found it weird at first but got used to it quickly. The twists completely recontextualise the whole series a few times, which was very impressive. The final book was not quite the climax I had hoped for, but it was still a traumatically emotional finale.",
-    rating: "4",
+    rating: "5",
     date: "01/07/21",
   },
   {
@@ -266,7 +269,61 @@ export const books = [
     quote: "I was having an emotion, and I hate that",
     review:
       "Murderbot is the softest and most fluffy death robot you'll ever meet. Mentally, that is. Physically, they have guns in their arms. The series is not just character-driven, but is almost a character study of Murderbot's psychology, history, and relationships. Through the first four novellas and subsequent novels, I cannot imagine a reader not falling in love with them.  It's pleasantly funny without being light-hearted, carefully handling Murderbot's mental health issues and especially social anxiety. That is correct, we are talking about a death robot with social anxiety. The setting is a dystopia of space capitalism, and the plot involves a lot of working out what the evil corporations are up to and stopping them (mainly to save friends rather than anti-capitalist sentiment, although that is also there). The action scenes are some of my favourites, with Murderbot's unique voice and Wells's practical prose making them feel very much like action is happening. ",
-    rating: "4",
+    rating: "5",
     date: "01/07/21",
+  },
+  {
+    title: "Empress of Forever",
+    href: "https://www.goodreads.com/en/book/show/40380954",
+    src: empress,
+    alt: "Angry girl stares at us wearing a futuristic pointy hat made of metal. It looks cooler than it sounds, I promise.",
+    quote:
+      "You’re not who you think you are,” Viv said. “You’re a dream. That’s all. But don’t take it too hard. So are the rest of us.",
+    review:
+      "From Max Gladstone, author of the Craft Sequence's contract-law based magic system, comes another philosophical, quirky story. After the first section of the book, you might be thinking 'why am I reading about a Mary Sue in a fever dream' but it works out, I promise. The protagonist, Vivian Liao, is an obnoxiously intelligent tech entrepreneur who deals perfectly well with being teleported into an incomprehensible sci-fi setting because she's the type of genius that tech billionaires try to convince us they are. The story draws inspiration from various Chinese philosophies (particularly Journey to the West, I hear). A lot is going on, and it doesn't particularly care to slow down on our account, so it's marvellously complicated, imaginative and fast-paced. The characters are unique but universally lovable - from Hong, our loyal priest; to Zanj, who's 3000 years old and very angry. ",
+    rating: "5",
+    date: "18/07/21",
+  },
+  {
+    title: "The Discworld",
+    href: "https://www.goodreads.com/series/40650-discworld",
+    src: discworld,
+    alt: "Pictured is the Discworld: a flat disc on top of four elephants on top of a turtle swimming through space.",
+    quote:
+      "Odd thing, ain't it... you meet people one at a time, they seem decent, they got brains that work, and then they get together and you hear the voice of the people. And it snarls.",
+    review:
+      "I'm mildly reluctant to review the Discworld because its deceptive intelligence and subversive approach to fantasy makes it hard to articulate why it's so wonderful. Pratchett crafted a personality for his books, and this along with his extraordinary skill in writing absurdist comedic fantasy that is also serious political commentary are only part of what's made it such an iconic series. The execution of what Pratchett was trying to achieve is near-perfect, and though the books won't be for everyone, there's nothing I think he could have done better. The sheer audacity to personify death as a mildly reluctant civil servant and make me love them? The man's a genius. There's some disagreement about where to start the series, the only consistent recommendation being 'not the start', which I agree with. I recommend the Witches series or Small Gods for a stand-alone. ",
+    rating: "4",
+    date: "18/07/21",
+  },
+  {
+    title: "Wayward Children",
+    href: "https://www.goodreads.com/series/165484-wayward-children",
+    src: wayward,
+    alt: "The first four books of the series, each picturing a unique doorway. The first - 'every heart a doorway' stands in a forest clearing, wooden, plain. The second - 'down among the sticks and bones' is a chest in a grey, rocky hillscape, a stunted, dead tree in the background. Doesn't look like much fun. The third is a door in reality itself, a shadow on the sky. The landscape is lurid colours, as if it were made of candy, as the title 'beneath a sugar sky' suggests. The last - 'in an absent dream' is in a tree, which is large and dark, creating a dimly lit, ominous scene.",
+    quote:
+      "You’re nobody’s doorway but your own, and the only one who gets to tell you how your story ends is you.",
+    review: [
+      "Portal fantasies have been a staple of the fantasy genre for a long time. If you're unfamiliar, think Alice in Wonderland, or Narnia, or consult ",
+      <a href="https://www.tor.com/2017/06/12/mapping-fantasies-into-a-single-multiverse-through-seanan-mcguires-wayward-children-series/">
+        TOR's convenient diagram,
+      </a>,
+      " which sorts various worlds according to the Wayward Children's ordering system. Seanan McGuire's series is my favourite contemporary example of the genre. Her stories have the fairytale-like quality you would expect from children wandering into fantastical worlds, but they have sharp edges reminiscent of Grimms'. The plot leaves something to be desired; it's often meandering and dissatisfying, but that's possibly intentional. The focus is on the characters - who all need to feel as if they belong in another world, and McGuire creates this feeling perfectly. The characters are the most diverse cast I've ever seen, with a ranging cast of sexualities, genders, races and religions. If you like the sound of portal fantasy and don't mind a somewhat weak plot, give it a try!",
+    ],
+    rating: "3",
+    date: "18/07/21",
+  },
+  {
+    title: "Jonathan Strange & Mr Norrel",
+    href: "https://www.goodreads.com/book/show/14201.Jonathan_Strange_Mr_Norrell",
+    src: "https://images-na.ssl-images-amazon.com/images/I/31Y78JXW27L.jpg",
+    alt: "The first four books of the series, each picturing a unique doorway. The first - 'every heart a doorway' stands in a forest clearing, wooden, plain. The second - 'down among the sticks and bones' is a chest in a grey, rocky hillscape, a stunted, dead tree in the background. Doesn't look like much fun. The third is a door in reality itself, a shadow on the sky. The landscape is lurid colours, as if it were made of candy, as the title 'beneath a sugar sky' suggests. The last - 'in an absent dream' is in a tree, which is large and dark, creating a dimly lit, ominous scene.",
+    quote:
+      "He understood for the first time that the world is not dumb at all, but merely waiting for someone to speak to it in a language it understands. In the fairy’s song the earth recognized the names by which it called itself.",
+    review: [
+      "This tome of a book by Susanna Clarke is what I would describe as 'literary fantasy', set in (and in a style reminiscent of) 19th century England. Its greatest strength is its setting, an England which was long ago filled with magic. Magic is now relegated to 'theoretical magicians', who study it but cannot use it. This doesn't last long in the book, of course, and a delightfully fantastical depiction of historical England emerges. The prose is often flowery and the plot slow - early on we spend a painful amount of time doing nothing much. The narrator is presented to be a droll scholar of magic in the time and assumes we, too, are 19th century Englishmen. This is both a positive and negative, and the detailed footnotes and references to an imaginary body of literature enhance the atmosphere and immersion, but can sometimes get in the way. It's not to be understated, however, what a beautifully classical and nostalgically whimsical novel it is. The devious faeries, fickle magic and sly prose make this a book I adored.",
+    ],
+    rating: "3",
+    date: "18/07/21",
   },
 ];

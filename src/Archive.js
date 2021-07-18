@@ -8,7 +8,7 @@ import { SelectButton, CircleButton } from "./Button.js";
  * Page that displays all reviews in a list
  */
 export default function Archive() {
-  const [sortType, setSort] = useState(0);
+  const [sortType, setSort] = useState(2);
   var bookslist = books.slice();
 
   /**
@@ -37,7 +37,7 @@ export default function Archive() {
    * @return string representing css rgb value
    */
   const color = (rating) => {
-    let c = "rgb(" + (200 - rating * 40) + "," + rating * 40 + ",0)";
+    let c = "rgb(" + rating * 40 + "," + "10, " + rating * 40 + ")";
     return c;
   };
 
