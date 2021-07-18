@@ -37,7 +37,7 @@ export default function Archive() {
    * @return string representing css rgb value
    */
   const color = (rating) => {
-    let c = "rgb(" + rating * 40 + "," + "10, " + rating * 40 + ")";
+    let c = "rgb(" + rating * 40 + ",10, " + rating * 40 + ")";
     return c;
   };
 
