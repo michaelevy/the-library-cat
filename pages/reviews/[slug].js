@@ -27,6 +27,7 @@ export async function getStaticProps(context) {
   });
   return {
     props: { review: res.items[0] },
+    revalidate: 1,
   };
 }
 
