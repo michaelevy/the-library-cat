@@ -1,6 +1,7 @@
 import { createClient } from "contentful";
 import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Skeleton from "../../components/Skeleton";
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_KEY,
@@ -16,7 +17,7 @@ export const getStaticPaths = async () => {
   });
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -32,6 +33,8 @@ export async function getStaticProps(context) {
 }
 
 export default function ReviewDetails({ review }) {
+  if (!review) return <Skeleton />;
+
   const { cover, title, text, rating, quote } = review.fields;
   return (
     <div>
