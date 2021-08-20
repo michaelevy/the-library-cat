@@ -1,25 +1,19 @@
-import Link from "next/link";
-
+import Meta from "./Meta";
+import Header from "./Header";
+import Navbar from "./Navbar";
 export default function Layout({ children }) {
   return (
-    <div className="layout">
-      <header>
-        <Link href="/">
-          <a>
-            <h1>
-              <span>Book</span>
-              <span>Reviews</span>
-            </h1>
-            <h2>From a nerd</h2>
-          </a>
-        </Link>
-      </header>
+    <>
+      <Meta />
+      <Header />
+      <Navbar />
+      <div className="layout">
+        <div className="page-content">{children}</div>
 
-      <div className="page-content">{children}</div>
-
-      <footer>
-        <p>Copyright 2021 Me</p>
-      </footer>
-    </div>
+        <footer>
+          <p>Copyright 2021 Me</p>
+        </footer>
+      </div>
+    </>
   );
 }
