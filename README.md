@@ -1,9 +1,7 @@
-This is the Next.js starter site (and course files) for the Next.js & Contentful tutorial by the Net Ninja.
+# The Library Cat
 
-## Getting Started
+Personal blog for book reviews, or anything else I find interesting.
 
-To use the starter project, run the following in a terminal:
+## Development
 
-```bash
-npx create-next-app [your-site-name] -e https://github.com/iamshaunjp/next-contentful/tree/lesson-1-starter-site
-```
+Built in the Jamstack archetecture, using Next.js as the framework and Contentful as the CDN. Utilises Next's incremental static regeneration. 
