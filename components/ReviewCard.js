@@ -1,47 +1,88 @@
 import Link from "next/link";
-import Image from "next/image";
 export default function Review({ review }) {
-  const { title, cover, rating, slug } = review.fields;
+  const { title, cover, rating, slug, summary } = review.fields;
   return (
-    <div className="card">
-      <div className="cover">
-        <Image
-          src={"https:" + cover.fields.file.url}
-          width="315"
-          height="475"
-        />
-      </div>
-      <div className="content">
-        <div className="info">
-          <h4>{title}</h4>
-          <h5>{rating + "/5"}</h5>
+    <>
+      <Link href={"/reviews/" + slug}>
+        <div className="card">
+          <figure className="cover">
+            <img src={"https:" + cover.fields.file.url} />
+          </figure>
+          <div className="content">
+            <h2>{title}</h2>
+            <p>{summary}</p>
+            <span>{rating + "/5"}</span>
+          </div>
         </div>
-        <div className="actions">
-          <Link href={"/reviews/" + slug}>Link</Link>
-        </div>
-      </div>
+      </Link>
+
       <style jsx>{`
         .card {
+          margin: 1rem;
+          text-align: left;
+          text-decoration: none;
+          border-radius: 50px;
+          transition: 0.15s ease;
+          width: 45%;
+          max-height: 400px;
+          overflow: hidden;
           display: flex;
           flex-direction: row;
         }
-        .content {
-          background: #6663;
+        @media only screen and (max-width: 480px) {
+          .card {
+            width: 95%;
+          }
+          .cover {
+            width: 75%;
+          }
+          h2 {
+            font-size: 25px;
+          }
+          span {
+          }
+        }
+        img {
+          height: 100%;
+          min-width: 100%;
+        }
+        .cover {
+          padding: 0;
+          margin: 0;
+          width: 50%;
+          overflow: hidden;
+        }
+        .card:hover,
+        .card:focus,
+        .card:active {
+          border-radius: 100px;
+          background-color: #a56640;
+        }
+        .card:active {
+        }
+        .card:hover {
+          cursor: pointer;
+        }
 
+        .content {
+          background: #2e2e2e;
+          color: #81685b;
           display: flex;
           flex-direction: column;
-        }
-        .info {
+          width: 50%;
           padding: 16px;
         }
-        .info h4 {
-          margin: 4px 0;
+
+        span {
+          margin-top: auto;
+          font-size: 80px;
+          font-family: impact;
         }
-        .info h5 {
-          color: #777;
-          font-size: 30px;
+
+        p {
+          font-size: large;
         }
       `}</style>
-    </div>
+    </>
   );
 }

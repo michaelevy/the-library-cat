@@ -2,6 +2,7 @@ import { createClient } from "contentful";
 import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Skeleton from "../../components/Loading";
+import Meta from "../../components/Meta";
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_KEY,
@@ -33,7 +34,7 @@ export async function getStaticProps(context) {
   }
   return {
     props: { review: res.items[0] },
-    revalidate: 1,
+    revalidate: 1800,
   };
 }
 
@@ -42,7 +43,8 @@ export default function ReviewDetails({ review }) {
 
   const { cover, title, text, rating, quote } = review.fields;
   return (
-    <div>
+    <div className="card">
+      <Meta title={title} description={"A cat's review of " + title} />
       <Image
         src={"https:" + cover.fields.file.url}
         width={cover.fields.file.details.image.width}
