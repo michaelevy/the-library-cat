@@ -1,4 +1,10 @@
 import Link from "next/link";
+
+/**
+ * Card representation of a review for the main page
+ *
+ * @param {object} review
+ */
 export default function Review({ review }) {
   const { title, cover, rating, slug, summary, alt } = review.fields;
   return (

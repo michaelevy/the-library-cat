@@ -3,14 +3,17 @@ import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Skeleton from "../../components/Loading";
 import Meta from "../../components/Meta";
+
+// contentful client
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_KEY,
 });
 
 export const getStaticPaths = async () => {
+  // get all reviews
   const res = await client.getEntries({ content_type: "review" });
-
+  // get the path for each review
   const paths = res.items.map((item) => {
     return {
       params: { slug: item.fields.slug },
@@ -23,21 +26,28 @@ export const getStaticPaths = async () => {
 };
 
 export async function getStaticProps(context) {
+  // find the review that matches this path
   const res = await client.getEntries({
     content_type: "review",
     "fields.slug": context.params.slug,
   });
+  // 404 if not found
   if (!res.items.length) {
     return {
       notFound: true,
     };
   }
+  // return this review, and revalidate every half hour
   return {
     props: { review: res.items[0] },
     revalidate: 1800,
   };
 }
-
+/**
+ * Present the full review of a book
+ *
+ * @param {object} review
+ */
 export default function ReviewDetails({ review }) {
   if (!review) return <Skeleton />;
 
@@ -84,6 +94,7 @@ export default function ReviewDetails({ review }) {
           flex-direction: column;
           flex-basis: 60%;
           flex-grow: 1;
+          padding: 50px;
         }
         .review {
           font-size: 20px;

@@ -1,5 +1,5 @@
 /**
- * Footer with link to source code
+ * Footer with link to source code and license
  */
 export default function Foot() {
   return (
@@ -16,6 +16,9 @@ export default function Foot() {
           Creative Commons Attribution 4.0 International License
         </a>
       </p>
+      <cite>
+        <p>Favicon is Cat by Matt Hawdon from the Noun Project</p>
+      </cite>
       <style jsx>{`
         .footer {
           color: #2e2e2e;
@@ -27,6 +30,8 @@ export default function Foot() {
           padding-bottom: 5px;
           height: min-content;
           color: #2e2e2e;
+          padding-top: 200px;
+          font-style: italic;
         }
       `}</style>
     </div>

@@ -1,5 +1,12 @@
 import Head from "next/head";
-
+/**
+ * Meta info for SEO, mainly
+ *
+ * @param {string} props.title - title of this page
+ * @param {string} props.description - description of this page
+ * @param {string} props.keywords - keywords for SEO
+ *
+ */
 export default function Meta(props) {
   return (
     <Head>
