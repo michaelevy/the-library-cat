@@ -1,12 +1,12 @@
 import Link from "next/link";
 export default function Review({ review }) {
-  const { title, cover, rating, slug, summary } = review.fields;
+  const { title, cover, rating, slug, summary, alt } = review.fields;
   return (
     <>
       <Link href={"/reviews/" + slug}>
         <div className="card">
           <figure className="cover">
-            <img src={"https:" + cover.fields.file.url} />
+            <img src={"https:" + cover.fields.file.url} alt={alt} />
           </figure>
           <div className="content">
             <h2>{title}</h2>
@@ -29,7 +29,7 @@ export default function Review({ review }) {
           display: flex;
           flex-direction: row;
         }
-        @media only screen and (max-width: 480px) {
+        @media screen and (max-width: 480px) {
           .card {
             width: 95%;
           }

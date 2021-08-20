@@ -5,18 +5,19 @@ body {
     Times New Roman, serif;
   font-size: 1.5em;
 }
-.layout {
+
+.page-content {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-.page-content {
-  max-width: 1200px;
-  margin: 20px auto 80px;
+  align-content: center;
+  max-width: 90%;
   padding: 0 20px;
   width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   box-sizing: border-box;
+  min-height: inherit;
 }
 
 h2 {
