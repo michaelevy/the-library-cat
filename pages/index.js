@@ -2,12 +2,15 @@ import { createClient } from "contentful";
 import Review from "../components/ReviewCard";
 import { useEffect, useState } from "react";
 // color scheme https://coolors.co/102524-212d2b-593f32-6b574c-81685b
+
 export async function getStaticProps() {
+  // contentful client
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_ACCESS_KEY,
   });
 
+  // get and return all reviews
   const res = await client.getEntries({ content_type: "review" });
 
   return {
@@ -22,6 +25,7 @@ export default function Reviews({ reviews }) {
   const [reviewList, setReviewList] = useState(reviews);
   const [hasMounted, setHasMounted] = useState(false);
 
+  /** enum representing button states  */
   const button = {
     RATING: "rating",
     DATE: "date",
@@ -29,8 +33,8 @@ export default function Reviews({ reviews }) {
   };
   const [selected, setSelected] = useState(button.DATE);
 
+  /** sort reviews by rating  */
   const rating = () => {
-    setSelected(button.RATING);
     setHasMounted(false);
     setReviewList(
       reviewList.sort((a, b) => {
@@ -40,8 +44,9 @@ export default function Reviews({ reviews }) {
       })
     );
   };
+
+  /** sort reviews by date  */
   const date = () => {
-    setSelected(button.DATE);
     setHasMounted(false);
     setReviewList(
       reviewList.sort((a, b) => {
@@ -49,13 +54,13 @@ export default function Reviews({ reviews }) {
         var b1 = b.fields.date.split("-");
         var time1 = new Date(a1[0], a1[1] - 1, a1[2]).getTime();
         var time2 = new Date(b1[0], b1[1] - 1, b1[2]).getTime();
-        return time1 - time2;
+        return time2 - time1 === 0 ? alph() : time2 - time1;
       })
     );
   };
+
+  /** sort reviews alphabetically  */
   const alph = () => {
-    setSelected(button.ALPH);
-    console.log(selected);
     setHasMounted(false);
     setReviewList(
       reviewList.sort((a, b) => {
@@ -64,25 +69,26 @@ export default function Reviews({ reviews }) {
     );
   };
 
+  // update components on sort
   useEffect(() => {
-    console.log(selected);
     setHasMounted(true);
   }, [hasMounted]);
 
+  // sort by date initially
   useEffect(() => {
     date();
     setHasMounted(true);
   }, []);
 
-  if (!hasMounted) {
-    return <div className="loading" />;
-  }
   return (
     <div className="home">
       <div className="controls">
         <div className="buttons">
           <button
-            onClick={date}
+            onClick={() => {
+              date();
+              setSelected(button.DATE);
+            }}
             style={
               selected === button.DATE
                 ? { background: " #997e70" }
@@ -92,7 +98,10 @@ export default function Reviews({ reviews }) {
             Date
           </button>
           <button
-            onClick={alph}
+            onClick={() => {
+              alph();
+              setSelected(button.ALPH);
+            }}
             style={
               selected === button.ALPH
                 ? { background: " #997e70" }
@@ -102,7 +111,10 @@ export default function Reviews({ reviews }) {
             Alphabetical
           </button>
           <button
-            onClick={rating}
+            onClick={() => {
+              rating();
+              setSelected(button.RATING);
+            }}
             style={
               selected === button.RATING
                 ? { background: " #997e70" }
@@ -112,14 +124,14 @@ export default function Reviews({ reviews }) {
             Rating
           </button>
         </div>
-        <input type="text" placeholder="Search"></input>
       </div>
-      <div className="review-list">
-        {reviewList.map((review) => (
-          <Review key={review.sys.id} review={review} />
-        ))}
-      </div>
-
+      {(hasMounted && (
+        <div className="review-list">
+          {reviewList.map((review) => (
+            <Review key={review.sys.id} review={review} />
+          ))}
+        </div>
+      )) || <div style={{ height: "102vh" }} />}
       <style jsx>{`
         .review-list {
           margin-left: auto;

@@ -1,4 +1,7 @@
 import Link from "next/link";
+/**
+ * Header of each page
+ */
 export default function Header() {
   return (
     <header>
@@ -13,6 +16,7 @@ export default function Header() {
       </Link>
 
       <h2>Short book reviews. From a cat.</h2>
+
       <style jsx>{`
         header {
           text-align: center;

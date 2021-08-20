@@ -1,3 +1,8 @@
+/**
+ * Mild attempt at a skeleton for loading reviews
+ *
+ * It's not very good, I know
+ */
 export default function Skeleton() {
   return (
     <div>

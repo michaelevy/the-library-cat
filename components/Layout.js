@@ -2,6 +2,11 @@ import Meta from "./Meta";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+/**
+ * Layout
+ *
+ * @param {JSX.Element} children
+ */
 export default function Layout({ children }) {
   return (
     <>
