@@ -1,7 +1,6 @@
 {
-  "name": "just-add-marmite",
-  "version": "0.1.0",
-  "private": true,
+  "name": "the_library_cat",
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
