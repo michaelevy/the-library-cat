@@ -1,9 +1,10 @@
+import styled from "styled-components";
 /**
  * Footer with link to source code and license
  */
 export default function Foot() {
   return (
-    <div className="footer">
+    <Footer>
       <p>This is the website of Michael Levy</p>
       <p>Built using Next.js and Contentful</p>
       <p>
@@ -20,20 +21,22 @@ export default function Foot() {
         <p>Favicon is Cat by Matt Hawdon from the Noun Project</p>
       </cite>
       <style jsx>{`
-        .footer {
-          color: #2e2e2e;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          font-size: 12px;
-          font-family: "Segoe UI";
-          padding-bottom: 5px;
-          height: min-content;
-          color: #2e2e2e;
-          padding-top: 200px;
-          font-style: italic;
+        footer {
         }
       `}</style>
-    </div>
+    </Footer>
   );
 }
+
+const Footer = styled.footer`
+  color: var(--grey);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  font-family: var(--body-sans);
+  padding-bottom: 5px;
+  height: min-content;
+  padding-top: 200px;
+  font-style: italic;
+`;

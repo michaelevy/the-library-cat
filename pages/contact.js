@@ -54,7 +54,7 @@ export default function contact() {
 
       <style jsx>{`
         .card {
-          font-family: Garamond;
+          font-family: var(--body-serif);
           margin-left: auto;
           margin-right: auto;
           padding: 40px;
@@ -62,7 +62,7 @@ export default function contact() {
           border: 0.01em solid #102524;
           box-shadow: 0 0 1px 0px #666;
           text-align: center;
-          color: #2e2e2e;
+          color: var(--grey);
           margin-top: 50px;
         }
       `}</style>
