@@ -24,8 +24,7 @@ export default function about() {
 
       <style jsx>{`
         .card {
-          font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans,
-            Helvetica Neue, Arial, sans-serif;
+          font-family: var(--body-serif);
           margin-left: auto;
           margin-right: auto;
           max-padding: 20px;
@@ -33,7 +32,7 @@ export default function about() {
           border: 0.01em solid #102524;
           box-shadow: 0 0 1px 0px #666;
           text-align: center;
-          color: #2e2e2e;
+          color: var(--grey);
           margin-top: 50px;
         }
       `}</style>

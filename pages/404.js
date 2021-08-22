@@ -16,14 +16,14 @@ export default function NotFound() {
       <style jsx>
         {`
           .not-found {
-            color: #2e2e2e;
+            color: var(--grey);
             margin-left: auto;
             width: 100%;
             text-align: center;
             border: 0.01em solid #102524;
           }
           a {
-            color: #102524;
+            color: var(--dark-green);
           }
         `}
       </style>

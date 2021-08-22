@@ -76,8 +76,7 @@ export default function ReviewDetails({ review }) {
           font-size: 50px;
         }
         .card {
-          font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans,
-            Helvetica Neue, Arial, sans-serif;
+          font-family: var(--body-sans)
           margin-left: auto;
           margin-right: auto;
           max-padding: 20px;
@@ -87,7 +86,7 @@ export default function ReviewDetails({ review }) {
           box-shadow: 0 0 1px 0px #666;
           flex-wrap: wrap;
           flex-direction: row;
-          color: #2e2e2e;
+          color: var(--grey);
         }
         .content {
           display: flex;
@@ -97,7 +96,7 @@ export default function ReviewDetails({ review }) {
           padding: 50px;
         }
         .review {
-          font-size: 20px;
+          font-size: 25px;
           word-wrap: normal;
         }
         .rating {

@@ -32,3 +32,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#babel
+.babel*
+
+# test page
+test.js
