@@ -19,7 +19,7 @@ export default function Header() {
 
       <style jsx>{`
         header {
-          width: 20%;
+          width: 100%;
           text-align: center;
           margin: 60px auto;
           color: var(--dark-green);
