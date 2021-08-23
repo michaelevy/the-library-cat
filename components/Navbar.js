@@ -35,7 +35,7 @@ const NavLink = styled.a`
   cursor: pointer;
   position: relative;
 
-  &::after {
+  &&::after {
     width: 100%;
     content: "";
     transition: 500ms;
@@ -44,7 +44,7 @@ const NavLink = styled.a`
     display: block;
     border-bottom: 2px solid var(--grey);
   }
-  &:hover::after {
+  &&:hover::after {
     transition: 150ms;
     transform: translateY(2px);
     content: "";
