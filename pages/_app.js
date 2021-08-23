@@ -9,9 +9,11 @@ function MyApp({ Component, pageProps }) {
     hasMounted(true);
   }, [mounted]);
   return (
-    <Layout route={router.route}>
-      {mounted && <Component {...pageProps} />}
-    </Layout>
+    mounted && (
+      <Layout route={router.route}>
+        <Component {...pageProps} />
+      </Layout>
+    )
   );
 }
 
