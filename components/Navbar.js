@@ -42,7 +42,7 @@ const NavLink = styled.a`
     will-change: transform;
     position: absolute;
     display: block;
-    border-bottom: 2px solid #2e2e2e;
+    border-bottom: 2px solid var(--grey);
   }
   &:hover::after {
     transition: 150ms;
@@ -50,6 +50,6 @@ const NavLink = styled.a`
     content: "";
     position: absolute;
     display: block;
-    border-bottom: 4px solid #2e2e2e;
+    border-bottom: 4px solid var(--grey);
   }
 `;
