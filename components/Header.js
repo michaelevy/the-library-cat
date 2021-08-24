@@ -7,7 +7,7 @@ export default function Header() {
     <header key="header">
       <h1>
         <Link href="/">
-          <a>
+          <a id="title">
             <span>The</span>
             <span>Library</span>
             <span>Cat</span>
@@ -18,6 +18,10 @@ export default function Header() {
       <h2>Short book reviews. From a cat.</h2>
 
       <style jsx>{`
+        --text-ratio: 1;
+        @media only screen and (max-width: 480px) {
+          --text-ratio: 0.75;
+        }
         header {
           width: 90%;
           text-align: center;
@@ -40,21 +44,32 @@ export default function Header() {
           transform: scale(1.1);
         }
         header span {
-          display: inline;
           padding: 0 10px;
           line-height: 1em;
+          font-size: calc(1em * var(--text-ratio));
         }
         header span:first-child {
-          font-size: 1em;
           font-weight: 400;
         }
         header span:nth-last-child(2) {
-          font-size: 1.5em;
+          font-size: calc(1.5em * var(--text-ratio));
           font-weight: 800;
           font-family: var(--heading);
         }
-        a:hover {
+        #title {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          width: 80%;
+          margin: 0 auto;
+          justify-content: center;
+          align-items: center;
+        }
+        #title:hover {
           cursor: pointer;
+        }
+        header h2 {
+          font-size: calc(1em * var(--text-ratio));
         }
       `}</style>
     </header>

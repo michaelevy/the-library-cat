@@ -62,8 +62,11 @@ const PageContent = styled.main`
   margin-right: auto;
   box-sizing: border-box;
   min-height: inherit;
+  --text-ratio: 1;
   @media only screen and (max-width: 480px) {
+    --text-ratio: 0.9;
     max-width: 100%;
     padding: 0 5px;
   }
+  font-size: calc(21px * var(--text-ratio));
 `;

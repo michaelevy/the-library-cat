@@ -19,7 +19,7 @@ export default function SortButton(props) {
       style={
         props.selected
           ? { background: "var(--orange) " }
-          : { background: "var(--white" }
+          : { background: "transparent" }
       }
     >
       {props.children}

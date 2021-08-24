@@ -1,5 +1,5 @@
 import { createClient } from "contentful";
-import Image from "next/image";
+import { PageText } from "../../components/PageText";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Skeleton from "../../components/Loading";
 import Meta from "../../components/Meta";
@@ -55,12 +55,11 @@ export default function ReviewDetails({ review }) {
   return (
     <>
       <Meta title={title} description={"A cat's review of " + title} />
-
-      <div className="card">
+      <div className="content">
         <figure className="cover">
           <img src={"https:" + cover.fields.file.url} alt={alt} />
         </figure>
-        <div className="content">
+        <PageText>
           <h2>{title}</h2>
 
           <p className="review">{documentToReactComponents(text)}</p>
@@ -68,37 +67,22 @@ export default function ReviewDetails({ review }) {
             <em>{'"' + quote + '"'}</em>
           </p>
           <p className="rating">{rating + "/5"}</p>
-        </div>
+        </PageText>
       </div>
 
       <style jsx>{`
         .rating {
           font-size: 50px;
         }
-        .card {
-          font-family: var(--body-sans)
-          margin-left: auto;
-          margin-right: auto;
-          max-padding: 20px;
-          width: 95%;
-          border: 0.01em solid #102524;
-          display: flex;
-          box-shadow: 0 0 1px 0px #666;
-          flex-wrap: wrap;
-          flex-direction: row;
-          color: var(--grey);
-        }
         .content {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
+          flex-wrap: wrap;
           flex-basis: 60%;
           flex-grow: 1;
-          padding: 50px;
+          justify-content: center;
         }
-        .review {
-          font-size: 25px;
-          word-wrap: normal;
-        }
+
         .rating {
           font-family: impact;
         }
@@ -120,7 +104,7 @@ export default function ReviewDetails({ review }) {
           }
           img {
             max-height: 100%;
-            max-width: 320px;
+            max-width: 200px;
             align-self: left;
           }
         }

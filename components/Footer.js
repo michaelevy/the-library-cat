@@ -39,4 +39,5 @@ const Footer = styled.footer`
   height: min-content;
   padding-top: 200px;
   font-style: italic;
+  text-align: center;
 `;
