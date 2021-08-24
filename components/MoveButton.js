@@ -18,8 +18,8 @@ export default function SortButton(props) {
       }}
       style={
         props.selected
-          ? { background: "var(--even-lighter-brown)" }
-          : { background: "var(--light-brown)" }
+          ? { background: "var(--orange) " }
+          : { background: "var(--white" }
       }
     >
       {props.children}
@@ -28,11 +28,11 @@ export default function SortButton(props) {
 }
 
 const Button = styled.button`
+  position: relative;
   cursor: pointer;
   float: right;
   padding: 6px;
   border: none;
-  margin-top: 8px;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 30px;
