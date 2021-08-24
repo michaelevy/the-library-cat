@@ -31,27 +31,9 @@ export default function Review({ review }) {
           <img src={"https:" + cover.fields.file.url} alt={alt} />
         </Cover>
         <div className="content">
-          <motion.h2
-            animate={{ y: 0 }}
-            initial={{ y: 20 }}
-            transition={{ ease: "easeOut" }}
-          >
-            {title}
-          </motion.h2>
-          <motion.p
-            animate={{ y: 0 }}
-            initial={{ y: 50 }}
-            transition={{ ease: "easeOut" }}
-          >
-            {summary}
-          </motion.p>
-          <motion.span
-            animate={{ y: 0 }}
-            initial={{ y: 60 }}
-            transition={{ ease: "easeOut" }}
-          >
-            {rating + "/5"}
-          </motion.span>
+          <h2>{title}</h2>
+          <p>{summary}</p>
+          <span>{rating + "/5"}</span>
         </div>
       </Card>
     </Link>
@@ -95,11 +77,11 @@ const Card = styled.section`
     flex-direction: column;
     width: 50%;
     padding: 16px;
+    padding-top: 16px;
   }
   p {
+    margin: 10px;
     font-size: large;
-  }
-  h2 {
   }
   span {
     margin-top: auto;
