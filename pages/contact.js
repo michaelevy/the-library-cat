@@ -58,12 +58,9 @@ export default function contact() {
           margin-left: auto;
           margin-right: auto;
           padding: 40px;
-          width: 95%;
-          border: 0.01em solid #102524;
-          box-shadow: 0 0 1px 0px #666;
+          max-width: 60%;
           text-align: center;
           color: var(--grey);
-          margin-top: 50px;
         }
       `}</style>
     </>

@@ -20,10 +20,6 @@ export default function NotFound() {
             margin-left: auto;
             width: 100%;
             text-align: center;
-            border: 0.01em solid #102524;
-          }
-          a {
-            color: var(--dark-green);
           }
         `}
       </style>

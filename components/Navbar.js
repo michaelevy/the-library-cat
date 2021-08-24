@@ -53,7 +53,11 @@ const NavLinks = styled.nav`
 `;
 const Nav = styled.nav`
   position: relative;
-  margin-bottom: 110px;
+  --text-ratio: 1;
+  @media only screen and (max-width: 480px) {
+    --text-ratio: 0.9;
+  }
+  margin-bottom: calc(110px * var(--text-ratio));
 `;
 const Divider = styled.div`
   position: absolute;
