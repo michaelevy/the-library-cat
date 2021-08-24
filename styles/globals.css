@@ -1,37 +1,25 @@
 :root {
-  --dark-green: #102524;
-  --mid-green: #212d2b;
-  --mid-brown: #6b574c;
-  --light-brown: #81685b;
-  --even-lighter-brown: #997e70;
-  --grey: #2e2e2e;
+  --dark-sec: #38afff;
+  --mid-sec: #afecfc;
+  --white: white;
+  --grey: #444444;
+  --orange: #fcbfaf;
   --body-serif: Garamond, Baskerville, Baskerville Old Face, Hoefler Text,
     Times New Roman, serif;
   --body-sans: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans,
     Helvetica Neue, Arial, sans-serif;
   --heading: "Spectral", Garamond, Baskerville, Baskerville Old Face,
     Hoefler Text;
+  background: var(--mid-sec);
 }
 
 body {
-  background: var(--light-brown);
+  margin-top: 50px;
+  background: var(--white);
   margin: 0;
   font-family: var(--body-serif);
   font-size: 1.5em;
-}
-
-.page-content {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  max-width: 90%;
-  padding: 0 20px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-  min-height: inherit;
+  margin: 0;
 }
 
 h2 {
@@ -40,5 +28,5 @@ h2 {
 }
 
 a {
-  color: var(--dark-green);
+  color: var(--dark-sec);
 }

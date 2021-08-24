@@ -115,12 +115,14 @@ export default function Reviews({ reviews }) {
 const ReviewList = styled.ul`
   margin-left: auto;
   margin-right: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
   width: 75%;
   @media only screen and (max-width: 480px) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 0;
     width: 100%;
     margin: 0;
     margin: 0;
@@ -128,9 +130,10 @@ const ReviewList = styled.ul`
 `;
 
 const Controls = styled.div`
-  border-radius: 10px;
-  background: var(--mid-brown);
-  margin-top: 50px;
+  border: 2px solid var(--grey);
+  border-radius: 20px;
+  background: var(--mid-prim);
+  margin-top: 10px;
   margin-bottom: 30px;
   display: flex;
   flex-direction: row;

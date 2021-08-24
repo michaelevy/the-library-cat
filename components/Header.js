@@ -21,13 +21,13 @@ export default function Header() {
         header {
           width: 90%;
           text-align: center;
-          margin: 60px auto;
-          color: var(--dark-green);
+          margin: 20px auto;
+          color: var(--grey);
         }
         header a {
           text-decoration: none;
           display: inline-block;
-          color: var(--dark-green);
+          color: var(--dark-sec);
         }
         header h1 {
           will-change: transform;
@@ -40,7 +40,8 @@ export default function Header() {
           transform: scale(1.1);
         }
         header span {
-          display: block;
+          display: inline;
+          padding: 0 10px;
           line-height: 1em;
         }
         header span:first-child {

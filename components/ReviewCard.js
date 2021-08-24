@@ -70,14 +70,14 @@ const Cover = styled.figure`
 
 const Card = styled.section`
   will-change: transform;
-  margin: 1rem;
   text-decoration: none;
   border-radius: 50px;
   transition: 0.8s;
-  width: 45%;
+  width: 100%;
   max-height: 400px;
   overflow: hidden;
   display: flex;
+  border: 1px solid var(--grey);
   flex-direction: row;
   &:hover {
     cursor: pointer;
@@ -88,11 +88,9 @@ const Card = styled.section`
     transition: 0.15s;
     transform: translate(-2.5px, -20px);
     border-radius: 100px;
-    box-shadow: 5px 10px var(--mid-brown);
   }
   .content {
-    background: var(--grey);
-    color: var(--light-brown);
+    color: var(--grey);
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -101,19 +99,24 @@ const Card = styled.section`
   p {
     font-size: large;
   }
-  @media screen and (max-width: 1080px) {
-    width: 95%;
-    ${Cover} {
-      width: 75%;
-    }
-    h2 {
-      font-size: 25px;
-    }
+  h2 {
   }
-
   span {
     margin-top: auto;
     font-size: 80px;
     font-family: impact;
+  }
+  @media only screen and (max-width: 480px) {
+    p {
+      font-size: medium;
+    }
+    span {
+      margin-top: auto;
+      font-size: 60px;
+      font-family: impact;
+    }
+    .content {
+      padding-top: 20px;
+    }
   }
 `;

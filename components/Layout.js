@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
 /**
  * Layout
@@ -19,15 +20,18 @@ export default function Layout({ children }) {
   };
   return (
     <>
-      <Meta />
-      <Header />
-      <Navbar />
+      <div style={{ background: "var(--mid-sec)" }}>
+        <Meta />
+        <Header />
+        <Navbar />
+      </div>
       <AnimateSharedLayout>
         <AnimatePresence
           exitBeforeEnter
           onExitComplete={() => window.scrollTo(0, 0)}
         >
-          <motion.main
+          <PageContent
+            as={motion.main}
             key={router.route}
             className="page-content"
             variants={variants} // Pass the variant object into Framer Motion
@@ -37,10 +41,29 @@ export default function Layout({ children }) {
             transition={{ type: "linear" }} // Set the transition to linear
           >
             {children}
-          </motion.main>
+          </PageContent>
         </AnimatePresence>
       </AnimateSharedLayout>
       <Footer />
     </>
   );
 }
+
+const PageContent = styled.main`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 90%;
+  padding: 0 20px;
+
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  min-height: inherit;
+  @media only screen and (max-width: 480px) {
+    max-width: 100%;
+    padding: 0 5px;
+  }
+`;
