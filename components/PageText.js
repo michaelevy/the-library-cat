@@ -7,6 +7,8 @@ export const PageText = styled.article`
   max-width: 60%;
   text-align: center;
   color: var(--grey);
+  line-height: 30px;
+
   @media only screen and (max-width: 900px) {
     max-width: 90%;
   }
