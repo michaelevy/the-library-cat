@@ -1,4 +1,12 @@
 import Link from "next/link";
+
+let subtitles = [
+  "So many books, so little time",
+  "An endless search for the end of the to-read pile",
+  "Striving to read books faster than Sanderson writes them",
+];
+let subtitle = subtitles[Math.floor(Math.random() * subtitles.length)];
+
 /**
  * Header of each page
  */
@@ -15,7 +23,7 @@ export default function Header() {
         </Link>
       </h1>
 
-      <h2>Short book reviews. From a cat.</h2>
+      <h2>{subtitle}</h2>
 
       <style jsx>{`
         --text-ratio: 1;
