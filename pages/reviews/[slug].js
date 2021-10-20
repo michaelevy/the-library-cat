@@ -1,8 +1,8 @@
 import { createClient } from "contentful";
 import { PageText } from "../../components/PageText";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { MARKS } from "@contentful/rich-text-types";
-import { useState } from "react";
+import { MARKS, BLOCKS } from "@contentful/rich-text-types";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Meta from "../../components/Meta";
 import Spoiler from "../../components/Spoiler";
@@ -49,31 +49,41 @@ export async function getStaticProps(context) {
 }
 
 /**
- * Use 'bold' markup as spoilers
- */
-const options = {
-  renderMark: {
-    [MARKS.BOLD]: (text) => {
-      <Spoiler>{text}</Spoiler>;
-    },
-  },
-};
-
-/**
  * Present the full review of a book
  *
  * @param {object} review
  */
 export default function ReviewDetails({ review }) {
   const [show, setShow] = useState(false);
-
+  const [width, height] = useWindowDimension();
+  const [small, setSmall] = useState(true);
   if (!review) return <div />;
-  const { cover, title, text, rating, quote, alt } = review.fields;
+  const { cover, title, text, rating, quote, alt, longText } = review.fields;
+  useEffect(() => {
+    if (flexWrap()) {
+      setSmall(false);
+    } else {
+      setSmall(true);
+    }
+  }, [width]);
+
+  /**
+   * Use 'bold' markup as spoilers
+   */
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => <Spoiler show={show}>{text}</Spoiler>,
+    },
+  };
+
   return (
     <>
       <Meta title={title} description={"A cat's review of " + title} />
       <Content>
-        <SpoilerButton>
+        <Sidebar style={small ? { position: "sticky" } : {}}>
+          <Cover>
+            <img src={"https:" + cover.fields.file.url} alt={alt} />
+          </Cover>
           <SelectButton
             onClick={() => {
               setShow(!show);
@@ -82,23 +92,29 @@ export default function ReviewDetails({ review }) {
           >
             {show ? "Hide Spoilers" : "Show Spoilers"}
           </SelectButton>
-        </SpoilerButton>
-        <Cover>
-          <img src={"https:" + cover.fields.file.url} alt={alt} />
-        </Cover>
+        </Sidebar>
+
         <PageText>
           <h2>{title}</h2>
 
-          <p className="review">{documentToReactComponents(text, options)}</p>
+          <div className="review">
+            {documentToReactComponents(text, options)}
+          </div>
 
           <p>
             <em>{'"' + quote + '"'}</em>
           </p>
-          <Rating>{rating + "/5"}</Rating>
+          <div className="review">
+            {documentToReactComponents(longText, options)}
+          </div>
         </PageText>
       </Content>
     </>
   );
+}
+
+function flexWrap() {
+  return document.getElementsByTagName("article").item(0).offsetTop > 400;
 }
 
 const Rating = styled.p`
@@ -120,6 +136,26 @@ const Cover = styled.figure`
     }
   }
 `;
+function useWindowDimension() {
+  const [size, setSize] = useState([0, 0]);
+  useEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
+
+const Sidebar = styled.aside`
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: min-content;
+`;
 
 const Content = styled.section`
   display: flex;
@@ -128,12 +164,4 @@ const Content = styled.section`
   flex-basis: 60%;
   flex-grow: 1;
   justify-content: center;
-`;
-
-const SpoilerButton = styled.div`
-  position: sticky;
-  width: min-content;
-  height: min-content;
-  top: 5%;
-  left: 95%;
 `;

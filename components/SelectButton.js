@@ -14,7 +14,7 @@ export default function Button(props) {
       style={
         props.selected
           ? { background: "var(--orange) " }
-          : { background: "var(--grey)", color: "var(--orange) " }
+          : { background: "var(--mid-sec)", color: "var(--grey) " }
       }
     >
       {props.children}

@@ -12,7 +12,6 @@ export default function Spoiler({ show, children }) {
 
 const SpoilerShown = styled.div`
   background: #44444440;
-  width: min-content;
   border-radius: 5px;
   display: inline-block;
 `;
