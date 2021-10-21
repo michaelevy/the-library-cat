@@ -100,10 +100,6 @@ export default function ReviewDetails({ review }) {
           <div className="review">
             {documentToReactComponents(text, options)}
           </div>
-
-          <p>
-            <em>{'"' + quote + '"'}</em>
-          </p>
           <div className="review">
             {documentToReactComponents(longText, options)}
           </div>

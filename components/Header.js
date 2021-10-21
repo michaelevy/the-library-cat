@@ -2,8 +2,6 @@ import Link from "next/link";
 
 let subtitles = [
   "So many books, so little time",
-  "Listen to cat talk about books",
-  "Embrace your inner nerd",
   "Speculating on speculative fiction",
   "An endless search for the end of the to-read pile",
   "Striving to read books faster than Sanderson writes them",
