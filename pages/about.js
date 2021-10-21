@@ -30,7 +30,7 @@ export default function about() {
         <br />
         <em>
           "In ancient times, cats were worshipped as gods; they have not
-          forgotten this."{" "}
+          forgotten this." <br />
         </em>
         <br /> - Terry Pratchett
       </p>
