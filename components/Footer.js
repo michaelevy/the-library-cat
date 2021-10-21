@@ -20,10 +20,6 @@ export default function Foot() {
       <cite>
         <p>Favicon is Cat by Matt Hawdon from the Noun Project</p>
       </cite>
-      <style jsx>{`
-        footer {
-        }
-      `}</style>
     </Footer>
   );
 }

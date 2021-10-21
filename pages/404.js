@@ -9,7 +9,7 @@ export default function NotFound() {
       <h2>Looks like you strayed from the path</h2>
       <p>
         Return{" "}
-        <Link href="home">
+        <Link href="/">
           <a>home</a>
         </Link>
       </p>

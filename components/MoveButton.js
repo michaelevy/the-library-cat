@@ -9,7 +9,7 @@ import styled from "styled-components";
  */
 export default function SortButton(props) {
   return (
-    <Button
+    <SortButtonStyle
       as={motion.button}
       whileHover={{ scale: 1.05, duration: 2 }}
       whileTap={{ scale: 0.9 }}
@@ -23,11 +23,11 @@ export default function SortButton(props) {
       }
     >
       {props.children}
-    </Button>
+    </SortButtonStyle>
   );
 }
 
-const Button = styled.button`
+export const SortButtonStyle = styled.button`
   position: relative;
   cursor: pointer;
   float: right;
