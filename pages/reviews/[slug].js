@@ -60,10 +60,10 @@ export default function ReviewDetails({ review }) {
   if (!review) return <div />;
   const { cover, title, text, rating, quote, alt, longText } = review.fields;
   useEffect(() => {
-    if (flexWrap()) {
-      setSmall(false);
-    } else {
+    if (flexWrap() || width < 768) {
       setSmall(true);
+    } else {
+      setSmall(false);
     }
   }, [width]);
 
@@ -80,7 +80,7 @@ export default function ReviewDetails({ review }) {
     <>
       <Meta title={title} description={"A cat's review of " + title} />
       <Content>
-        <Sidebar style={small ? { position: "sticky" } : {}}>
+        <Sidebar style={small ? {} : { position: "sticky" }}>
           <Cover>
             <img src={"https:" + cover.fields.file.url} alt={alt} />
           </Cover>
@@ -109,8 +109,33 @@ export default function ReviewDetails({ review }) {
   );
 }
 
+/**
+ * Decide based on article offset whether sidebar should be sticky or fixed
+ *
+ * @returns {boolean} whether the article is > 400px from the top
+ */
 function flexWrap() {
   return document.getElementsByTagName("article").item(0).offsetTop > 400;
+}
+
+/**
+ * Custom hook to get window dimensions whenever they change
+ *
+ * Credit to https://stackoverflow.com/a/19014495/13043323
+ *
+ * @returns {Array<number>} width, height
+ */
+function useWindowDimension() {
+  const [size, setSize] = useState([0, 0]);
+  useEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
 }
 
 const Rating = styled.p`
@@ -132,18 +157,6 @@ const Cover = styled.figure`
     }
   }
 `;
-function useWindowDimension() {
-  const [size, setSize] = useState([0, 0]);
-  useEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-  return size;
-}
 
 const Sidebar = styled.aside`
   top: 80px;
