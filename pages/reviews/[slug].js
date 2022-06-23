@@ -84,14 +84,6 @@ export default function ReviewDetails({ review }) {
           <Cover>
             <img src={"https:" + cover.fields.file.url} alt={alt} />
           </Cover>
-          <SelectButton
-            onClick={() => {
-              setShow(!show);
-            }}
-            selected={show}
-          >
-            {show ? "Hide Spoilers" : "Show Spoilers"}
-          </SelectButton>
         </Sidebar>
 
         <PageText>
