@@ -29,5 +29,10 @@ h2 {
 }
 
 a {
+  outline: none;
   color: var(--dark-sec);
+}
+
+button {
+  outline: none;
 }
