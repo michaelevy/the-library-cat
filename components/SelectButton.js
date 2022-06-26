@@ -6,7 +6,10 @@ export default function Button(props) {
   return (
     <ButtonStyle
       as={motion.button}
-      whileHover={{ scale: 1.05, duration: 2 }}
+      whileHover={{
+        scale: 1.05,
+        duration: 2,
+      }}
       whileTap={{ scale: 0.9 }}
       onClick={() => {
         props.onClick();
