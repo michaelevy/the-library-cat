@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { motion, AnimateSharedLayout } from "framer-motion";
+import { motion } from "framer-motion";
+import { useState } from "react";
 /**
  * Card representation of a review for the main page
  *
@@ -15,20 +16,29 @@ const tween = {
 
 export default function Review({ review }) {
   const { title, cover, rating, slug, summary, alt } = review.fields;
-
+  const [loaded, setLoaded] = useState(false);
   return (
-    <Link href={"/reviews/" + slug} scroll={false}>
+    <Link
+      href={
+        "longText" in review.fields ? "/reviews/" + slug : "/shorts/" + slug
+      }
+      scroll={false}
+    >
       <Card
         key={title}
         as={motion.li}
         className="card"
-        layout
         animate={{ opacity: 1 }}
         iniial={{ opacity: 0 }}
         transition={tween}
       >
         <Cover>
-          <img src={"https:" + cover.fields.file.url} alt={alt} />
+          <img
+            style={loaded ? {} : { display: "none" }}
+            onLoad={() => setLoaded(true)}
+            src={"https:" + cover.fields.file.url}
+            alt={alt}
+          />
         </Cover>
         <div className="content">
           <h2>{title}</h2>
@@ -44,9 +54,11 @@ const Cover = styled.figure`
   margin: 0;
   width: 50%;
   overflow: hidden;
+  font-size: 16px;
   img {
     height: 100%;
     min-width: 100%;
+    background: "grey";
   }
 `;
 

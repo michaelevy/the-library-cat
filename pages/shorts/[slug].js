@@ -14,9 +14,9 @@ const client = createClient({
 });
 
 export const getStaticPaths = async () => {
-  // get all reviews
-  const res = await client.getEntries({ content_type: "review" });
-  // get the path for each review
+  // get all shorts
+  const res = await client.getEntries({ content_type: "short" });
+  // get the path for each short
   const paths = res.items.map((item) => {
     return {
       params: { slug: item.fields.slug },
@@ -29,9 +29,9 @@ export const getStaticPaths = async () => {
 };
 
 export async function getStaticProps(context) {
-  // find the review that matches this path
+  // find the short that matches this path
   const res = await client.getEntries({
-    content_type: "review",
+    content_type: "short",
     "fields.slug": context.params.slug,
   });
   // 404 if not found
@@ -40,24 +40,23 @@ export async function getStaticProps(context) {
       notFound: true,
     };
   }
-  // return this review, and revalidate every half hour
+  // return this short, and revalidate every half hour
   return {
-    props: { review: res.items[0] },
+    props: { short: res.items[0] },
     revalidate: 1800,
   };
 }
 
 /**
- * Present the full review of a book
+ * Present the full short of a book
  *
- * @param {object} review
+ * @param {object} short
  */
-export default function ReviewDetails({ review }) {
-  const [show, setShow] = useState(false);
+export default function ShortDetails({ short }) {
   const [width, height] = useWindowDimension();
   const [small, setSmall] = useState(true);
-  if (!review) return <div />;
-  const { cover, title, text, rating, quote, alt, longText } = review.fields;
+  if (!short) return <div />;
+  const { cover, title, text, rating, quote, alt, longText } = short.fields;
   useEffect(() => {
     if (flexWrap() || width < 768) {
       setSmall(true);
@@ -65,15 +64,6 @@ export default function ReviewDetails({ review }) {
       setSmall(false);
     }
   }, [width]);
-
-  /**
-   * Use 'bold' markup as spoilers
-   */
-  const options = {
-    renderMark: {
-      [MARKS.BOLD]: (text) => <Spoiler show={show}>{text}</Spoiler>,
-    },
-  };
 
   return (
     <>
@@ -88,12 +78,10 @@ export default function ReviewDetails({ review }) {
         <PageText>
           <h2>{title}</h2>
 
-          <div className="review">
-            {documentToReactComponents(text, options)}
-          </div>
-          <div className="review">
-            {documentToReactComponents(longText, options)}
-          </div>
+          <div className="short">{documentToReactComponents(text)}</div>
+          <p>
+            <em>{'"' + quote + '"'}</em>
+          </p>
         </PageText>
       </Content>
     </>
