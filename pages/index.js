@@ -169,7 +169,19 @@ export default function Reviews({ reviews, shorts }) {
       />
       {(
         <AnimatePresence>
-          <ReviewList key={viewingReviews} layout>
+          <ReviewList
+            key={viewingReviews}
+            style={
+              viewingReviews
+                ? {
+                    gridTemplateColumns: "repeat(auto-fit, minmax(385px, 1fr))",
+                  }
+                : {
+                    gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+                  }
+            }
+            layout
+          >
             {reviewList.map((review) => (
               <motion.div
                 key={review.fields.slug}
@@ -257,11 +269,9 @@ const ReviewList = styled(motion.ul)`
   margin-right: auto;
   display: grid;
   gap: 3rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
   width: 75%;
-  @media only screen and (max-width: 480px) {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  @media only screen and (max-width: 600px) {
     padding: 0;
     width: 100%;
     margin: 0;
@@ -310,10 +320,9 @@ const ViewButtonStyle = styled(motion.button)`
   will-change: true;
   @media only screen and (max-width: 480px) {
     font-size: small;
-    height: 75px;
   }
   @media only screen and (max-width: 600px) {
-    height: 60px;
+    height: 75px;
   }
 `;
 

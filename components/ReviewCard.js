@@ -31,6 +31,7 @@ export default function Review({ review }) {
         animate={{ opacity: 1 }}
         iniial={{ opacity: 0 }}
         transition={tween}
+        style={"longText" in review.fields ? { minWidth: "100%" } : {}}
       >
         <Cover>
           <img
@@ -53,11 +54,12 @@ const Cover = styled.figure`
   padding: 0;
   margin: 0;
   width: 50%;
+  max-width: 250px;
   overflow: hidden;
   font-size: 16px;
   img {
     height: 100%;
-    min-width: 100%;
+    max-width: 100px%;
     background: "grey";
   }
 `;
