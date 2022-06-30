@@ -1,11 +1,9 @@
 import { createClient } from "contentful";
 import { PageText } from "../../components/PageText";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { MARKS } from "@contentful/rich-text-types";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Meta from "../../components/Meta";
-import Spoiler from "../../components/Spoiler";
 
 // contentful client
 const client = createClient({
