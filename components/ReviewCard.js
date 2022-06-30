@@ -54,12 +54,11 @@ const Cover = styled.figure`
   padding: 0;
   margin: 0;
   width: 50%;
-  max-width: 250px;
+  max-width: 300px;
   overflow: hidden;
   font-size: 16px;
   img {
     height: 100%;
-    max-width: 100px%;
     background: "grey";
   }
 `;

@@ -225,7 +225,9 @@ function ViewButton({ highlight, onClick, children }) {
       onClick={() => {
         onClick();
       }}
-      style={highlight ? {} : { opacity: 0.5 }}
+      style={
+        highlight ? { color: "var(--grey)" } : { color: "rgba(130, 130, 130)" }
+      }
     >
       {children}
     </ViewButtonStyle>
@@ -313,7 +315,6 @@ const ViewButtonStyle = styled(motion.button)`
   padding: 15px;
   border: none;
   max-width: 50%;
-  color: var(--grey);
   font-family: var(--body-serif);
   font-size: large;
   background-color: var(--white);
