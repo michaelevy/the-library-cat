@@ -8,7 +8,7 @@ const PageTextStyle = styled.article`
   margin-left: auto;
   margin-right: auto;
   max-width: 40%;
-  text-align: center;
+  text-align: left;
   color: var(--grey);
   line-height: 30px;
 
