@@ -202,10 +202,10 @@ function ViewChange(props) {
   return (
     <ChangeBox>
       <ViewButton highlight={props.highlight} onClick={props.viewReviews}>
-        Full Length Reviews
+        View Full Length Reviews
       </ViewButton>
       <ViewButton highlight={!props.highlight} onClick={props.viewShorts}>
-        Short Form Reviews
+        View Short Form Reviews
       </ViewButton>
     </ChangeBox>
   );

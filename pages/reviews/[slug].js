@@ -1,7 +1,7 @@
 import { createClient } from "contentful";
 import { PageText } from "../../components/PageText";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { MARKS } from "@contentful/rich-text-types";
+import { MARKS, BLOCKS } from "@contentful/rich-text-types";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Meta from "../../components/Meta";
@@ -72,6 +72,11 @@ export default function ReviewDetails({ review }) {
   const options = {
     renderMark: {
       [MARKS.BOLD]: (text) => <Spoiler show={show}>{text}</Spoiler>,
+    },
+    renderNode: {
+      [BLOCKS.QUOTE]: (node, children) => (
+        <Quote className={node}>{children}</Quote>
+      ),
     },
   };
 
@@ -159,4 +164,11 @@ const Content = styled.section`
   flex-basis: 60%;
   flex-grow: 1;
   justify-content: center;
+`;
+
+const Quote = styled.blockquote`
+  border-left: 5px solid var(--grey);
+  border-radius: 5px;
+  padding-left: 5%;
+  margin-left: 2%;
 `;
