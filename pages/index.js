@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import SortButton from "../components/MoveButton";
 import { motion, AnimatePresence } from "framer-motion";
-import Button from "../components/SelectButton";
 
 // color scheme https://coolors.co/102524-212d2b-593f32-6b574c-81685b
 

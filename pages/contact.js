@@ -23,7 +23,8 @@ export default function contact() {
         <br />
         <em>
           "The problem with sending messages was that people responded to them,
-          which meant one had to write more messages in reply."{" "}
+          which meant one had to write more messages in reply."
+          <br />
         </em>
         <br /> - Arkady Martine
       </p>
