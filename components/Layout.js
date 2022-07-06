@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 /**
  * Layout
@@ -18,6 +19,18 @@ export default function Layout({ children }) {
     enter: { opacity: 1, x: 0, y: 0, duration: 2 },
     exit: { opacity: 0, x: 100, y: 0, duration: 2 },
   };
+  useEffect(() => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-5RFDBR98MZ", {
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+      page_title: window.document.title,
+    });
+  }, []);
   return (
     <>
       <div style={{ background: "var(--mid-sec)" }}>
