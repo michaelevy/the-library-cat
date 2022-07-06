@@ -1,17 +1,64 @@
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 let subtitles = [
   "So many books, so little time",
+  "So many books, so little time",
+  "So many books, so little time",
+  "Speculating on speculative fiction",
   "Speculating on speculative fiction",
   "An endless search for the end of the to-read pile",
+  "An endless search for the end of the to-read pile",
+  "An endless search for the end of the to-read pile",
   "Striving to read books faster than Sanderson writes them",
+  "Striving to read books faster than Sanderson writes them",
+  "Striving to read books faster than Sanderson writes them",
+  "Would you like to see my spreadsheet",
+  "If I were Murderbot I could read so many books",
+  "Three Seagrass with a cat!",
+  "In ancient times, cats were worshipped as gods; they have not forgotten this.",
 ];
-let subtitle = subtitles[Math.floor(Math.random() * subtitles.length)];
 
+let subtitle = null;
+
+function Subtitle({ children }) {
+  return (
+    <AnimatePresence>
+      <motion.h2
+        key={children}
+        exit={{ opacity: 0 }}
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          marginLeft: "auto",
+          marginRight: "auto",
+          width: "100%",
+          fontSize: "calc(1em * var(--text-ratio))",
+        }}
+        transition={{ duration: "1" }}
+        initial={{ opacity: 0 }}
+        id="subtitle"
+        animate={{ opacity: 1 }}
+      >
+        {children}
+      </motion.h2>
+    </AnimatePresence>
+  );
+}
 /**
  * Header of each page
  */
 export default function Header() {
+  let newSub =
+    subtitle == null
+      ? "Striving to read books faster than Sanderson writes them"
+      : subtitle;
+
+  while (newSub == subtitle) {
+    newSub = subtitles[Math.floor(Math.random() * subtitles.length)];
+  }
+  subtitle = newSub;
   return (
     <header key="header">
       <h1>
@@ -23,8 +70,9 @@ export default function Header() {
           </a>
         </Link>
       </h1>
-
-      <h2>{subtitle}</h2>
+      <div style={{ height: "50px" }}>
+        <Subtitle>{subtitle}</Subtitle>
+      </div>
 
       <style jsx>{`
         --text-ratio: 1;
@@ -76,9 +124,6 @@ export default function Header() {
         }
         #title:hover {
           cursor: pointer;
-        }
-        header h2 {
-          font-size: calc(1em * var(--text-ratio));
         }
       `}</style>
     </header>

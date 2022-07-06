@@ -29,8 +29,9 @@ export default function about() {
         <br />
         <br />
         <em>
-          "In ancient times, cats were worshipped as gods; they have not
-          forgotten this." <br />
+          "It's all stories, really. Everything's got a story in it. [...]
+          Change the story, change the world."
+          <br />
         </em>
         <br /> - Terry Pratchett
       </p>

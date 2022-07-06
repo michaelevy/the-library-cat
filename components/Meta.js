@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 /**
  * Meta info for SEO, mainly
  *
@@ -16,6 +17,25 @@ export default function Meta(props) {
       <meta name="description" content={props.description} />
       <meta name="keywords" content={props.keywords} />
       <link rel="icon" href="/favicon.ico" />
+      {/* Global Site Tag (gtag.js) - Google Analytics */}
+      <Script
+        strategy="afterInteractive"
+        src={"https://www.googletagmanager.com/gtag/js?id=G-5RFDBR98MZ"}
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', G-5RFDBR98MZ, {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
     </Head>
   );
 }
