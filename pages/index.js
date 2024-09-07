@@ -1,9 +1,11 @@
 import { createClient } from "contentful";
 import Review from "../components/ReviewCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import styled from "styled-components";
-import SortButton from "../components/MoveButton";
 import { motion, AnimatePresence } from "framer-motion";
+import Input from "../components/Input";
+import Checkbox from "../components/Checkbox"
+import { Root, Track, Range, Thumb } from "@radix-ui/react-slider";
 
 // color scheme https://coolors.co/102524-212d2b-593f32-6b574c-81685b
 
@@ -36,12 +38,6 @@ export async function getStaticProps() {
   };
 }
 
-/** enum representing button states  */
-const button = {
-  RATING: "rating",
-  DATE: "date",
-  ALPH: "alph",
-};
 
 /**
  * Convince react to actually redisplay my list when I change it
@@ -67,118 +63,78 @@ function getCookie(name) {
 }
 
 export default function Reviews({ reviews, shorts }) {
-  const viewCookie = () => {
-    var cookie = getCookie("viewReviews");
-    if (cookie == "false") {
+  const reviewOriginal = [...reviews, ...shorts];
+  const [reviewList, setReviewList] = useState(reviewOriginal);
+  const [ratingRange, setRatingRange] = useState([1,5]);
+  const [title, setTitle] = useState("");
+  const [lengths, updateLengths] = useReducer((state, length) => {
+    if (length.value === "long") {
+      return {
+        "long": length.checked,
+        "short": state.short
+      }
+    } else if (length.value === "short") {
+      return {
+        "long": state.long,
+        "short": length.checked
+      }
+    }
+  }, { "long": true, "short": true });
+
+  const search = (searchTerm) => {
+    setTitle(searchTerm)
+  };
+
+  const searchFilter = (a) => {
+    return JSON.stringify(a.fields.title).toLowerCase().includes(title.toLowerCase())
+  }
+
+  const lengthSelect = (value, checked) => {
+    updateLengths({ "value": value, "checked": checked })
+  }
+
+  const lengthFilter = (a) => {
+    if (lengths.long && !lengths.short) {
+      return a.fields.hasOwnProperty("longText")
+    } else if (!lengths.long && lengths.short) {
+      return !a.fields.hasOwnProperty("longText")
+    } else if (!lengths.long && !lengths.short) {
       return false;
     }
     return true;
-  };
-  const sortCookie = () => {
-    var cookie = getCookie("sort");
-    if (cookie == "date") {
-      return button.DATE;
-    } else if (cookie == "rating") {
-      return button.RATING;
-    } else {
-      return button.ALPH;
-    }
-  };
+  }
 
-  const reviewOriginal = [...reviews];
-  const shortOriginal = [...shorts];
-  const [reviewList, setReviewList] = useState(
-    viewCookie() ? reviewOriginal : shortOriginal
-  );
-  const [selected, setSelected] = useState(sortCookie());
-  const [viewingReviews, setView] = useState(viewCookie());
-  const forceUpdate = useForceUpdate();
+  const ratingSelect = (value) => {
+    setRatingRange(value)
+  }
 
-  /** sort reviews by rating  */
-  const rating = () => {
-    document.cookie = "sort=rating; SameSite=None;secure";
-    setReviewList(
-      reviewList.sort((a, b) => {
-        return a.fields.rating !== b.fields.rating
-          ? a.fields.rating < b.fields.rating
-          : a.fields.title.localeCompare(b.fields.title);
-      })
-    );
-  };
+  const ratingFilter = (a) =>{
+    return a.fields.rating >= Math.min(...ratingRange) && a.fields.rating <= Math.max(...ratingRange)
+  }
 
-  /** sort reviews by date  */
-  const date = () => {
-    document.cookie = "sort=date; SameSite=None;secure";
-    setReviewList(viewingReviews ? reviewOriginal : shortOriginal);
-  };
+  function dateToNum(d) {
+    d = d.split("-"); return Number(d[0] + d[1] + d[2]);
+  }
 
-  /** sort reviews alphabetically  */
-  const alph = () => {
-    document.cookie = "sort=alph; SameSite=None;secure";
-    setReviewList(
-      reviewList.sort((a, b) => {
-        return a.fields.title.localeCompare(b.fields.title);
-      })
-    );
-  };
-
-  /**
-   * View long reviews
-   */
-  const viewReviews = () => {
-    document.cookie = "viewReviews=" + true + "; SameSite=None;secure";
-    setView(true);
-    setReviewList(reviewOriginal);
-  };
-
-  /**
-   * View short reviews
-   */
-  const viewShorts = () => {
-    document.cookie = "viewReviews=" + false + "; SameSite=None;secure";
-    setView(false);
-    setReviewList(shortOriginal);
-  };
-
-  // save sorted state between reviews and shorts
   useEffect(() => {
-    if (selected === button.DATE) {
-      date();
-    } else if (selected === button.RATING) {
-      rating();
-    } else {
-      alph();
-    }
-    forceUpdate();
-  }, [viewingReviews]);
+    setReviewList(reviewOriginal.filter(lengthFilter).filter(ratingFilter).filter(searchFilter).sort((a, b) => { return dateToNum(b.fields.date) - dateToNum(a.fields.date) }))
+  }, [lengths, ratingRange, title])
 
   return (
     <Home>
-      <ViewChange
-        highlight={viewingReviews}
-        viewReviews={viewReviews}
-        viewShorts={viewShorts}
-      />
       <Controls
-        selected={selected}
-        setSelected={setSelected}
-        alph={alph}
-        date={date}
-        rating={rating}
+        search={search}
+        lengthSelect={lengthSelect}
+        ratingSelect={ratingSelect}
+        ratingRange = {ratingRange}
       />
       {(
         <AnimatePresence>
           <ReviewList
-            key={viewingReviews}
-            style={
-              viewingReviews
-                ? {
-                    gridTemplateColumns: "repeat(auto-fit, minmax(385px, 1fr))",
-                  }
-                : {
-                    gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
-                  }
-            }
+            style=
+            {{
+              gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+            }}
             layout
           >
             {reviewList.map((review) => (
@@ -197,74 +153,84 @@ export default function Reviews({ reviews, shorts }) {
   );
 }
 
-function ViewChange(props) {
-  return (
-    <ChangeBox>
-      <ViewButton highlight={props.highlight} onClick={props.viewReviews}>
-        View Full Length Reviews
-      </ViewButton>
-      <ViewButton highlight={!props.highlight} onClick={props.viewShorts}>
-        View Short Form Reviews
-      </ViewButton>
-    </ChangeBox>
-  );
-}
-
-function ViewButton({ highlight, onClick, children }) {
-  return (
-    <ViewButtonStyle
-      as={motion.button}
-      whileHover={{
-        duration: 2,
-        backgroundColor: "rgba(240, 240, 240)",
-      }}
-      animate={highlight ? { fontSize: "100%" } : { fontSize: "75%" }}
-      transition={{ duration: 0.2, ease: "linear" }}
-      whileTap={{ scale: 0.99 }}
-      onClick={() => {
-        onClick();
-      }}
-      style={
-        highlight ? { color: "var(--grey)" } : { color: "rgba(130, 130, 130)" }
-      }
-    >
-      {children}
-    </ViewButtonStyle>
-  );
-}
-function Controls({ selected, setSelected, alph, rating, date }) {
+function Controls({ search, lengthSelect, ratingSelect, ratingRange }) {
   return (
     <ControlStyle>
-      <SortButton
-        sort={() => {
-          setSelected(button.DATE);
-          date();
-        }}
-        selected={selected === button.DATE}
-      >
-        Date
-      </SortButton>
-      <SortButton
-        sort={() => {
-          setSelected(button.ALPH);
-          alph();
-        }}
-        selected={selected === button.ALPH}
-      >
-        Alphabetical
-      </SortButton>
-      <SortButton
-        sort={() => {
-          setSelected(button.RATING);
-          rating();
-        }}
-        selected={selected === button.RATING}
-      >
-        Rating
-      </SortButton>
+      <ControlSubGroupStyle>
+        <Input func={search} />
+      </ControlSubGroupStyle>
+      <ControlSubGroupStyle>
+        <Checkbox func={lengthSelect} value="long">
+          Long reviews
+        </Checkbox>
+        <Checkbox func={lengthSelect} value="short">
+          Short reviews
+        </Checkbox>
+      </ControlSubGroupStyle>
+      <ControlSubGroupStyle>
+        <p>Rating Filter</p>
+        <SliderRoot defaultValue={[1,5]} min = {1} max={5} step={1} minStepsBetweenThumbs={0} onValueChange={ratingSelect}>
+          <SliderTrack>
+            <SliderRange/>
+          </SliderTrack>
+          <SliderThumb aria-label="MinRating"><SliderText>{Math.min(...ratingRange)}</SliderText></SliderThumb>
+          <SliderThumb aria-label="MaxRating"> <SliderText>{Math.max(...ratingRange)}</SliderText></SliderThumb>
+        </SliderRoot>
+      </ControlSubGroupStyle>
     </ControlStyle>
   );
 }
+
+const SliderRoot = styled(Root)`
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  width: 200px;
+  margin: 20px;
+`
+const SliderTrack = styled(Track)`
+  position: relative;
+  background-color: var(--mid-sec);
+  flex-grow: 1;
+  border-radius: 9999px;
+  height: 3px;
+`
+const SliderText = styled.p`
+  font-size: 15px;
+  position: relative;
+  margin: 0;
+  font-weight: 600;
+  color: var(--grey)
+`
+
+const SliderRange = styled(Range)`
+  position: absolute;
+  background-color: var(--grey);
+  border-radius: 9999px;
+  height: 100%;
+`
+
+const SliderThumb = styled(Thumb)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: var(--mid-sec);
+  border-color: var(--mid-sec);
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px #0000000f;
+  &:focus{
+    outline: none;
+    box-shadow: 0 0 0 3px #0000000f;
+  }
+  &:hover {
+    filter: brightness(95%);
+  }
+`
+
 const ReviewList = styled(motion.ul)`
   margin-left: auto;
   margin-right: auto;
@@ -280,9 +246,22 @@ const ReviewList = styled(motion.ul)`
   }
 `;
 
+const ControlSubGroupStyle = styled.div`
+  border-radius: 0px;
+  border-style: dotted;
+  border-color: var(--grey);
+  padding: 10px;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+`;
+
 const ControlStyle = styled.div`
   border: 2px solid var(--grey);
-  border-radius: 20px;
+  border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 30px;
   display: flex;
@@ -291,39 +270,6 @@ const ControlStyle = styled.div`
   align-items: center;
   height: min-content;
   width: min-content;
-`;
-
-const ChangeBox = styled.div`
-  border: solid var(--grey);
-  border-width: 0 0 1px 0;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: min-content;
-  width: 90%;
-`;
-
-const ViewButtonStyle = styled(motion.button)`
-  width: 100%;
-  height: 50px;
-  position: relative;
-  cursor: pointer;
-  padding: 15px;
-  border: none;
-  max-width: 50%;
-  font-family: var(--body-serif);
-  font-size: large;
-  background-color: var(--white);
-  will-change: true;
-  @media only screen and (max-width: 480px) {
-    font-size: small;
-  }
-  @media only screen and (max-width: 600px) {
-    height: 75px;
-  }
 `;
 
 const Home = styled.div`
